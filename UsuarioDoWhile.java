@@ -1,3 +1,4 @@
+//Exercício de aula - 08/04/25
 package notasMedia;
 
 import java.util.Scanner;
