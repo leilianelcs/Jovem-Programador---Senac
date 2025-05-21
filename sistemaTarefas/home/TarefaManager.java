@@ -42,7 +42,7 @@ public class TarefaManager {
 		return false;
 	}
 	
-	public String editarDescriao(int id, String decricao) {
+	public String editarDescricao(int id, String decricao) {
 		Tarefa tarefa = buscarPorID(id); 
 						
 		if(tarefa != null && tarefa.getStatus() == TarefaStatus.CONCLUIDA) {
@@ -52,4 +52,17 @@ public class TarefaManager {
 		}
 		return "Ops! algo deu errado!";
 	}
+	
+
+	public String editarTarefa (int id, String novoTitulo, String novaDescricao, TarefaPrioridade novaPrioridade) {
+		Tarefa tarefa = buscarPorID(id); 
+		if (tarefa != null && tarefa.getStatus() != TarefaStatus.CONCLUIDA) {
+			tarefa.setTitulo(novoTitulo);
+			tarefa.setDescricao(novaDescricao);
+			tarefa.setPrioridade(novaPrioridade);
+			return "\nTarefa atualizada com sucesso!";
+		}
+		return "Tarefa não encontrada ou já concluída.";
+	}
+		
 }
