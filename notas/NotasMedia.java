@@ -1,5 +1,5 @@
 //Exercício de aula - 17/04/25
-package notasMedia;
+package notas;
 
 import java.util.Scanner;
 
