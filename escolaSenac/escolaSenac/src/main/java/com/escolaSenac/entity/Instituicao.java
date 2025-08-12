@@ -1,4 +1,4 @@
-package com.veiculo.entity;
+package com.escolaSenac.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,15 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Fabricante {
+public class Instituicao {
 
-    public Fabricante() {
+    public Instituicao() {
     }
 
-    public Fabricante(Long id, String nome, String paisOrigem) {
+    public Instituicao(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.paisOrigem = paisOrigem;
     }
 
     @Id
@@ -24,9 +23,6 @@ public class Fabricante {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nome;
-
-    @Column(nullable = false, length = 50)
-    private String paisOrigem;
 
     public Long getId() {
         return id;
@@ -42,14 +38,6 @@ public class Fabricante {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getPaisOrigem() {
-        return paisOrigem;
-    }
-
-    public void setPaisOrigem(String paisOrigem) {
-        this.paisOrigem = paisOrigem;
     }
 
 }
