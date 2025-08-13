@@ -9,6 +9,13 @@ import jakarta.persistence.Id;
 @Entity
 public class Instituicao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String nome;
+
     public Instituicao() {
     }
 
@@ -16,13 +23,6 @@ public class Instituicao {
         this.id = id;
         this.nome = nome;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true, length = 100)
-    private String nome;
 
     public Long getId() {
         return id;

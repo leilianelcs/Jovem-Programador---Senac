@@ -11,6 +11,20 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Aluno {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String nome;
+
+    @Column(nullable = false, unique = true, length = 11)
+    private String cpf;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id", nullable = false)
+    private Curso curso;
+
     public Aluno() {
     }
 
@@ -52,19 +66,5 @@ public class Aluno {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true, length = 100)
-    private String nome;
-
-    @Column(nullable = false, unique = true, length = 11)
-    private String cpf;
-
-    @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false)
-    private Curso curso;
 
 }
