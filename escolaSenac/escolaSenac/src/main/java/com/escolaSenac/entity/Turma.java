@@ -5,9 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Instituicao {
+public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +18,22 @@ public class Instituicao {
     @Column(nullable = false, unique = true, length = 100)
     private String nome;
 
-    public Instituicao() {
+    @ManyToOne
+    @JoinColumn(name = "curso_id", nullable = false)
+    private Curso curso;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id", nullable = false)
+    private Aluno aluno;
+
+    public Turma() {
     }
 
-    public Instituicao(Long id, String nome) {
+    public Turma(Long id, String nome, Curso curso, Aluno aluno) {
         this.id = id;
         this.nome = nome;
+        this.curso = curso;
+        this.aluno = aluno;
     }
 
     public Long getId() {
@@ -38,6 +50,22 @@ public class Instituicao {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
 }
