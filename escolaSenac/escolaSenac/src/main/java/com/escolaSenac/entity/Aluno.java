@@ -14,9 +14,10 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(Long id, String nome, Curso curso) {
+    public Aluno(Long id, String nome, String cpf, Curso curso) {
         this.id = id;
         this.nome = nome;
+        this.cpf = cpf;
         this.curso = curso;
     }
 
@@ -36,6 +37,14 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public Curso getCurso() {
         return curso;
     }
@@ -50,6 +59,9 @@ public class Aluno {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nome;
+
+    @Column(nullable = false, unique = true, length = 11)
+    private String cpf;
 
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false)
