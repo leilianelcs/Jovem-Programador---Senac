@@ -1,5 +1,9 @@
 package com.escolaSenac.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +22,14 @@ public class Turma {
     @Column(nullable = false, unique = true, length = 100)
     private String nome;
 
+    @CreationTimestamp
+    @Column(name = "data_inicio", nullable = false, updatable = true)
+    private LocalDateTime dataInicio;
+
+    @CreationTimestamp
+    @Column(name = "data_fim", nullable = false, updatable = true)
+    private LocalDateTime dataFim;
+
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
@@ -25,6 +37,9 @@ public class Turma {
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
+
+    @Column(nullable = false)
+    private Integer duracao;
 
     public Turma() {
     }
@@ -67,5 +82,6 @@ public class Turma {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-
+    // curso: data início, data fim, duração, sala
+    // criar tabelas matéria e professor, endereço
 }
