@@ -9,15 +9,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Fabricante {
 
-    public Fabricante() {
-    }
-
-    public Fabricante(Long id, String nome, String paisOrigem) {
-        this.id = id;
-        this.nome = nome;
-        this.paisOrigem = paisOrigem;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +18,15 @@ public class Fabricante {
 
     @Column(nullable = false, length = 50)
     private String paisOrigem;
+
+    public Fabricante() {
+    }
+
+    public Fabricante(Long id, String nome, String paisOrigem) {
+        this.id = id;
+        this.nome = nome;
+        this.paisOrigem = paisOrigem;
+    }
 
     public Long getId() {
         return id;

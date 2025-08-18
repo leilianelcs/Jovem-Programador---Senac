@@ -11,15 +11,6 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Modelo {
 
-    public Modelo() {
-    }
-
-    public Modelo(Long id, String nome, Fabricante fabricante) {
-        this.id = id;
-        this.nome = nome;
-        this.fabricante = fabricante;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +21,15 @@ public class Modelo {
     @ManyToOne
     @JoinColumn(name = "fabricante_id", nullable = false)
     private Fabricante fabricante;
+
+    public Modelo() {
+    }
+
+    public Modelo(Long id, String nome, Fabricante fabricante) {
+        this.id = id;
+        this.nome = nome;
+        this.fabricante = fabricante;
+    }
 
     public Long getId() {
         return id;
