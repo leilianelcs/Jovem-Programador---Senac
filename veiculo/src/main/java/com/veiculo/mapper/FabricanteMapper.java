@@ -22,6 +22,5 @@ public final class FabricanteMapper {
         f.setNome(dto.getNome());
         f.setPaisOrigem(dto.getPaisOrigem());
         return f;
-
     }
 }
