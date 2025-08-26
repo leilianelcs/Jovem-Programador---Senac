@@ -1,5 +1,8 @@
 package com.veiculo.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.veiculo.dto.ModeloDTO;
 import com.veiculo.entity.Modelo;
 
@@ -22,5 +25,13 @@ public final class ModeloMapper {
         f.setNome(dto.getNome());
         f.setFabricante(dto.getFabricante());
         return f;
+    }
+
+    public static List<ModeloDTO> toDTOList(List<Modelo> list) {
+        return list == null ? List.of() : list.stream().map(ModeloMapper::toDTO).collect(Collectors.toList());
+    }
+
+    public static List<Modelo> toEntityList(List<ModeloDTO> list) {
+        return list == null ? List.of() : list.stream().map(ModeloMapper::toEntity).collect(Collectors.toList());
     }
 }

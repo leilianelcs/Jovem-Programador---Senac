@@ -1,10 +1,14 @@
 package com.veiculo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.veiculo.dto.FabricanteDTO;
 import com.veiculo.dto.VeiculoDTO;
+import com.veiculo.mapper.FabricanteMapper;
 import com.veiculo.mapper.VeiculoMapper;
 import com.veiculo.repository.VeiculoRepository;
 
@@ -13,6 +17,11 @@ public class VeiculoService {
 
     @Autowired
     private VeiculoRepository repository;
+
+    @Transactional(readOnly = true)
+    public List<VeiculoDTO> listar() {
+        return VeiculoMapper.toDTOList(repository.findAll());
+    }
 
     @Transactional
     public VeiculoDTO criar(VeiculoDTO dto) {

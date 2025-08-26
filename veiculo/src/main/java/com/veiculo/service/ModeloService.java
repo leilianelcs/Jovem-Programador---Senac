@@ -1,5 +1,7 @@
 package com.veiculo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,11 @@ public class ModeloService {
 
     @Autowired
     private ModeloRepository repository;
+
+    @Transactional(readOnly = true)
+    public List<ModeloDTO> listar() {
+        return ModeloMapper.toDTOList(repository.findAll());
+    }
 
     @Transactional
     public ModeloDTO criar(ModeloDTO dto) {
