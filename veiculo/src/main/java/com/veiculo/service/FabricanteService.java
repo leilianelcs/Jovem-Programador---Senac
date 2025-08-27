@@ -23,11 +23,11 @@ public class FabricanteService {
         return FabricanteMapper.toDTOList(repository.findAll());
     }
 
-    // @Transactional(readOnly = true)
-    // public ModeloDTO buscarPorId(Long id) {
-    // return repository.findById(id).map(FabricanteMapper::toDTO).orElseThrow(() ->
-    // new RuntimeException())
-    // }
+    @Transactional(readOnly = true)
+    public FabricanteDTO buscarPorId(Long id) {
+        return repository.findById(id).map(FabricanteMapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("Fabricante não encontrado"));
+    }
 
     @Transactional
     public FabricanteDTO criar(FabricanteDTO dto) {
