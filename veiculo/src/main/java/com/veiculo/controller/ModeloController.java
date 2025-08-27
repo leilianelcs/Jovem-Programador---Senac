@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.veiculo.dto.FabricanteDTO;
 import com.veiculo.dto.ModeloDTO;
 import com.veiculo.service.ModeloService;
 

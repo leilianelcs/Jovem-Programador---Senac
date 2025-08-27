@@ -3,9 +3,7 @@ package com.veiculo.mapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.veiculo.dto.FabricanteDTO;
 import com.veiculo.dto.VeiculoDTO;
-import com.veiculo.entity.Fabricante;
 import com.veiculo.entity.Veiculo;
 
 public final class VeiculoMapper {

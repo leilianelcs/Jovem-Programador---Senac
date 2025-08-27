@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.veiculo.dto.FabricanteDTO;
 import com.veiculo.dto.VeiculoDTO;
-import com.veiculo.mapper.FabricanteMapper;
 import com.veiculo.mapper.VeiculoMapper;
 import com.veiculo.repository.VeiculoRepository;
 
