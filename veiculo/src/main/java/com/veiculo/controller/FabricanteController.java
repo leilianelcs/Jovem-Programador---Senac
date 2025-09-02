@@ -24,7 +24,6 @@ public class FabricanteController {
     private FabricanteService service;
 
     // private final FabricanteService service;
-
     // public FabricanteController(FabricanteService service) {
     // this.service = service;
     // }
@@ -54,9 +53,8 @@ public class FabricanteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FabricanteDTO> atualizar(@PathVariable Long id, @RequestBody FabricanteDTO dto) {
-        FabricanteDTO atualizado = service.atualizar(id, dto);
-        return ResponseEntity.ok(atualizado);
+    public FabricanteDTO atualizar(@PathVariable Long id, @RequestBody FabricanteDTO dto) {
+        return service.atualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
@@ -64,5 +62,4 @@ public class FabricanteController {
         service.deletar(id);
         return ResponseEntity.noContent().build();
     }
-
 }

@@ -52,7 +52,6 @@ public class FabricanteService {
         existente.setNome(dto.getNome());
         existente.setPaisOrigem(dto.getPaisOrigem());
         return FabricanteMapper.toDTO(repository.save(existente));
-
     }
 
     @Transactional
@@ -62,5 +61,4 @@ public class FabricanteService {
         }
         repository.deleteById(id);
     }
-
 }

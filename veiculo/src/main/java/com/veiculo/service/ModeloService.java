@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.veiculo.dto.ModeloDTO;
+import com.veiculo.entity.Modelo;
 import com.veiculo.mapper.ModeloMapper;
 import com.veiculo.repository.ModeloRepository;
 
@@ -19,6 +20,12 @@ public class ModeloService {
     @Transactional(readOnly = true)
     public List<ModeloDTO> listar() {
         return ModeloMapper.toDTOList(repository.findAll());
+    }
+
+    @Transactional(readOnly = true)
+    public ModeloDTO buscarPorId(Long id) {
+        return repository.findById(id).map(ModeloMapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("Modelo não encontrado"));
     }
 
     @Transactional
@@ -41,6 +48,22 @@ public class ModeloService {
          */
 
         return ModeloMapper.toDTO(repository.save(ModeloMapper.toEntity(dto)));
+    }
+
+    @Transactional
+    public ModeloDTO atualizar(Long id, ModeloDTO dto) {
+        Modelo existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Modelo não encontrado"));
+        existente.setNome(dto.getNome());
+        return ModeloMapper.toDTO(repository.save(existente));
+    }
+
+    @Transactional
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Modelo não encontrado");
+        }
+        repository.deleteById(id);
     }
 
 }

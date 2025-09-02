@@ -21,6 +21,12 @@ public class VeiculoService {
         return VeiculoMapper.toDTOList(repository.findAll());
     }
 
+    @Transactional(readOnly = true)
+    public VeiculoDTO buscarPorId(Long id) {
+        return repository.findById(id).map(VeiculoMapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+    }
+
     @Transactional
     public VeiculoDTO criar(VeiculoDTO dto) {
         if (dto.getId() != null) {
