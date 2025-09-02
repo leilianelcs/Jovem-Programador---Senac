@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.veiculo.dto.VeiculoDTO;
+import com.veiculo.entity.Veiculo;
 import com.veiculo.mapper.VeiculoMapper;
 import com.veiculo.repository.VeiculoRepository;
 
@@ -37,6 +38,27 @@ public class VeiculoService {
         }
 
         return VeiculoMapper.toDTO(repository.save(VeiculoMapper.toEntity(dto)));
+    }
+
+    @Transactional
+    public VeiculoDTO atualizar(Long id, VeiculoDTO dto) {
+        Veiculo existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+        existente.setPlaca(dto.getPlaca());
+        existente.setCor(dto.getCor());
+        existente.setValor(dto.getValor());
+        existente.setAno(dto.getAno());
+        existente.setDescricao(dto.getDescricao());
+
+        return VeiculoMapper.toDTO(repository.save(existente));
+    }
+
+    @Transactional
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Veiculo não encontrado");
+        }
+        repository.deleteById(id);
     }
 
 }

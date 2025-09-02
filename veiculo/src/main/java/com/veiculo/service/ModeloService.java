@@ -38,15 +38,6 @@ public class ModeloService {
             throw new IllegalArgumentException("  Já existe modelo com esse nome");
         }
 
-        /*
-         * if (dto.getFabricante() == null || dto.getFabricante().getId() == null) {
-         * throw new IllegalArgumentException("Fabricante inválido");
-         * }
-         * if (FabricanteRepository.findById(dto.getFabricante().getId().isEmpty())) {
-         * throw new IllegalArgumentException("Fabricante não encontrado");
-         * }
-         */
-
         return ModeloMapper.toDTO(repository.save(ModeloMapper.toEntity(dto)));
     }
 
