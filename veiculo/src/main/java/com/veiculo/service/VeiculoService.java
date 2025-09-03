@@ -28,6 +28,13 @@ public class VeiculoService {
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
     }
 
+    @Transactional(readOnly = true)
+    public VeiculoDTO buscarPorPlaca(String placa) {
+        return repository.findByPlaca(placa)
+                .map(VeiculoMapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("Veículo não encontrado com a placa: " + placa));
+    }
+
     @Transactional
     public VeiculoDTO criar(VeiculoDTO dto) {
         if (dto.getId() != null) {

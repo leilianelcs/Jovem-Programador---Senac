@@ -28,6 +28,12 @@ public class VeiculoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/placa/{placa}")
+    public ResponseEntity<VeiculoDTO> buscarPorPlaca(@PathVariable String placa) {
+        VeiculoDTO veiculo = service.buscarPorPlaca(placa);
+        return ResponseEntity.ok(veiculo);
+    }
+
     @GetMapping
     public List<VeiculoDTO> listar() {
         return service.listar();
