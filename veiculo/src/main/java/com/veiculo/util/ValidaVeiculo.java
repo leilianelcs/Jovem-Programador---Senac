@@ -19,7 +19,8 @@ public final class ValidaVeiculo { // Classe final pois será somente utilizada 
         if (placa == null) { // Rejeita caso seja nula
             return false; // Retorna falso se a placa for nula ou vazia
         }
-        String normalizada = placa.trim().toUpperCase(); // Remove espaços e converte para maiúsculas
+        String normalizada = placa.trim().toUpperCase(); // Remove espaços e converte para
+                                                         // maiúsculas
         if (normalizada.length() == 7) { // só continua se tiver exatamnte 7 caracteres
             // matches() verifica se a string inteira segue exatmante o padrao
             return PADRAO_ANTIGO.matcher(normalizada).matches() || // Verifica se corresponde ao padrão antigo

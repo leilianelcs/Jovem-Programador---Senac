@@ -2,6 +2,7 @@ package com.veiculo.service;
 
 import java.util.List;
 
+import org.hibernate.grammars.hql.HqlParser.CteAttributesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +11,7 @@ import com.veiculo.dto.VeiculoDTO;
 import com.veiculo.entity.Veiculo;
 import com.veiculo.mapper.VeiculoMapper;
 import com.veiculo.repository.VeiculoRepository;
-import com.veiculo.util.ValidaVeiculo; // ✅ Importação da classe de validação
+import com.veiculo.util.ValidaVeiculo;
 
 @Service
 public class VeiculoService {
@@ -42,6 +43,7 @@ public class VeiculoService {
             throw new IllegalArgumentException("Novo veículo não deve ter ID");
         }
 
+        dto.setPlaca(dto.getPlaca().replaceAll(" ", ""));
         if (!ValidaVeiculo.isPlacaValida(dto.getPlaca())) {
             throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
         }
