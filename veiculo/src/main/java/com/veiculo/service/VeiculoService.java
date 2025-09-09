@@ -1,8 +1,6 @@
 package com.veiculo.service;
 
 import java.util.List;
-
-import org.hibernate.grammars.hql.HqlParser.CteAttributesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,13 +41,12 @@ public class VeiculoService {
             throw new IllegalArgumentException("Novo veículo não deve ter ID");
         }
 
-        dto.setPlaca(dto.getPlaca().replaceAll(" ", ""));
-        if (!ValidaVeiculo.isPlacaValida(dto.getPlaca())) {
+        if (!ValidaVeiculo.isPlacaValida(dto)) {
             throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
         }
 
         if (repository.existsByPlaca(dto.getPlaca())) {
-            throw new IllegalArgumentException("Esta placa já está cadastrada");
+            throw new IllegalArgumentException("Placa já cadastrada");
         }
 
         return VeiculoMapper.toDTO(repository.save(VeiculoMapper.toEntity(dto)));
@@ -60,7 +57,7 @@ public class VeiculoService {
         Veiculo existente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
 
-        if (!ValidaVeiculo.isPlacaValida(dto.getPlaca())) {
+        if (!ValidaVeiculo.isPlacaValida(dto)) {
             throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
         }
 
