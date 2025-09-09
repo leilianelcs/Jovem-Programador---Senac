@@ -10,6 +10,7 @@ import com.veiculo.dto.VeiculoDTO;
 import com.veiculo.entity.Veiculo;
 import com.veiculo.mapper.VeiculoMapper;
 import com.veiculo.repository.VeiculoRepository;
+import com.veiculo.util.ValidaVeiculo; // ✅ Importação da classe de validação
 
 @Service
 public class VeiculoService {
@@ -40,8 +41,13 @@ public class VeiculoService {
         if (dto.getId() != null) {
             throw new IllegalArgumentException("Novo veículo não deve ter ID");
         }
+
+        if (!ValidaVeiculo.isPlacaValida(dto.getPlaca())) {
+            throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
+        }
+
         if (repository.existsByPlaca(dto.getPlaca())) {
-            throw new IllegalArgumentException("  Esta placa já está cadastrada");
+            throw new IllegalArgumentException("Esta placa já está cadastrada");
         }
 
         return VeiculoMapper.toDTO(repository.save(VeiculoMapper.toEntity(dto)));
@@ -51,6 +57,11 @@ public class VeiculoService {
     public VeiculoDTO atualizar(Long id, VeiculoDTO dto) {
         Veiculo existente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+
+        if (!ValidaVeiculo.isPlacaValida(dto.getPlaca())) {
+            throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
+        }
+
         existente.setPlaca(dto.getPlaca());
         existente.setCor(dto.getCor());
         existente.setValor(dto.getValor());
@@ -67,5 +78,4 @@ public class VeiculoService {
         }
         repository.deleteById(id);
     }
-
 }
