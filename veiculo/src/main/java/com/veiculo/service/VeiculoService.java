@@ -46,7 +46,7 @@ public class VeiculoService {
         }
 
         if (repository.existsByPlaca(dto.getPlaca())) {
-            throw new IllegalArgumentException("Placa já cadastrada");
+            throw new IllegalArgumentException("Já existe placa cadastrada");
         }
 
         return VeiculoMapper.toDTO(repository.save(VeiculoMapper.toEntity(dto)));

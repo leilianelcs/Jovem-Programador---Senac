@@ -6,3 +6,7 @@ Sequência de criação - Java:
 ✅ - service (recebe dado do controller, via dto, trata, chama regra de negócio, validação);
 ✅ - controller (API, gerencia interface com o usuário através do request, response, via JSon);
 ✅ - util (cria validação, cria regra de negócio, métodos).  
+
+Convenção:
+Constante - MAIÚSCULA
+Variavel - minúscula
