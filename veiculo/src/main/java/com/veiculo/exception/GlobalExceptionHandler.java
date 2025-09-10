@@ -73,4 +73,9 @@ public class GlobalExceptionHandler {
         return body(HttpStatus.BAD_REQUEST, "Propriedade de ordenação inválida: " + ex.getPropertyName());
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleGeneric(Exception ex) {
+        return body(HttpStatus.INTERNAL_SERVER_ERROR, "Erro inesperado");
+    }
+
 }
