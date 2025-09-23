@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina de automoveis</title>
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <a href="/" class="logo" aria-label="Pagina inicial">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <rect x="4" y="18" width="40" height="14" rx="7" fill="#0d47a1"/>
+                    <circle cx="16" cy="34" r="4" fill="#263238"/>
+                    <circle cx="32" cy="34" r="4" fill="#263238"/>
+                    <rect x="14" y="14" width="20" height="6" rx="3" fill="#42a5f5"/>
+                    <rect x="20" y="8" width="8" height="7" rx="2" fill="#0d47a1"/>
+                </svg>
+                <span class="brand-text">MultiCar</span>
+            </a>
+        </div>
+        <nav class="main-nav" aria-label="Menu principal">
+            <ul>
+                <li><a href="#fabricantes" id="bt-fabricantes">Fabricantes</a></li>
+                <li><a href="#modelos" id="bt-modelos">Modelos</a></li>
+                <li><a href="#veiculos" id="bt-veiculos">Veiculos</a></li>
+            </ul>
+        </nav>
+        <div class="actions">
+            <button class="btn primary">Login</button>
+            <button class="btn outline">Registrar</button>
+        </div>
+    </header>
+    <main>
+        <section id="fabricantes" class="minha-section">
+            <h2>Fabricantes</h2>
+            <p>Informações sobre fabricantes de automóveis</p>            
+        </section>
+        <section id="modelos" class="minha-section">
+             <h2>Modelos</h2>
+            <p>Informações sobre modelos de automóveis</p>      
+        </section>
+         <section id="veiculos" class="minha-section">
+             <h2>Veículos</h2>
+            <p>Informações sobre veículos disponíveis</p>      
+        </section>
+    </main>
+    <script>     
+       
+        document.getElementById("bt-fabricantes").addEventListener("click", function(event) {
+           document.querySelector("#fabricantes").style.display = "block";
+        });
+ 
+        document.getElementById("bt-modelos").addEventListener("click", function(event) {
+           document.querySelector("#modelos").style.display = "block";
+        });
+ 
+          document.getElementById("bt-veiculos").addEventListener("click", function(event) {
+           document.querySelector("#veiculos").style.display = "block";
+        });
+ 
+    </script>
+</body>
+</html>
