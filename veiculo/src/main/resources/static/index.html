@@ -45,20 +45,28 @@
             <p>Informações sobre veículos disponíveis</p>      
         </section>
     </main>
-    <script>     
-       
-        document.getElementById("bt-fabricantes").addEventListener("click", function(event) {
-           document.querySelector("#fabricantes").style.display = "block";
-        });
- 
-        document.getElementById("bt-modelos").addEventListener("click", function(event) {
-           document.querySelector("#modelos").style.display = "block";
-        });
- 
-          document.getElementById("bt-veiculos").addEventListener("click", function(event) {
-           document.querySelector("#veiculos").style.display = "block";
-        });
- 
+    <script>       
+
+    function esconderTodos() { 
+        document.querySelector("#fabricantes").style.display = "none";
+        document.querySelector("#modelos").style.display = "none";
+        document.querySelector("#veiculos").style.display = "none";
+    }
+    
+    document.getElementById("bt-fabricantes").addEventListener("click", function(event) {
+        esconderTodos();
+        document.querySelector("#fabricantes").style.display = "block";
+    });
+    document.getElementById("bt-modelos").addEventListener("click", function(event) {
+        esconderTodos();
+        document.querySelector("#modelos").style.display = "block";
+    });
+    document.getElementById("bt-veiculos").addEventListener("click", function(event) {
+        esconderTodos();
+        document.querySelector("#veiculos").style.display = "block";
+    });
+
+
     </script>
 </body>
 </html>
