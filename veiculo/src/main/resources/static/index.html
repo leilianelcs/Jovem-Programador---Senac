@@ -45,26 +45,76 @@
             <p>Informações sobre veículos disponíveis</p>      
         </section>
     </main>
-    <script>       
+    <script>
 
-    function esconderTodos() { 
-        document.querySelector("#fabricantes").style.display = "none";
-        document.querySelector("#modelos").style.display = "none";
-        document.querySelector("#veiculos").style.display = "none";
-    }
+    const limparSections = function () { 
+        document.querySelectorAll(".minha-section").forEach(function(section) {
+        section.style.display = "none";
+    });
+    };
+
     
     document.getElementById("bt-fabricantes").addEventListener("click", function(event) {
-        esconderTodos();
+        limparSections();
+        const elementoH2 = document.createElement("h2");     
+        elementoH2.className = "novo-h2";
+        elementoH2.textContent = "Fabricantes - atualizado";
+        document.querySelector("#fabricantes").appendChild(elementoH2);
         document.querySelector("#fabricantes").style.display = "block";
     });
+
+    const dadosFabricantes = [
+        {ID: 1, Nome: "Toyota", Pais: "Japão"},
+        {ID: 2, Nome: "Ford", Pais: "EUA"},
+        {ID: 3, Nome: "Volswagen", Pais: "Alemanha"},
+        {ID: 4, Nome: "Hyundai", Pais: "Coréia do Sul"},
+        {ID: 5, Nome: "Fiat", Pais: "Itália"},
+    ];
+
     document.getElementById("bt-modelos").addEventListener("click", function(event) {
-        esconderTodos();
+        limparSections();
         document.querySelector("#modelos").style.display = "block";
     });
+
     document.getElementById("bt-veiculos").addEventListener("click", function(event) {
-        esconderTodos();
+        limparSections();
         document.querySelector("#veiculos").style.display = "block";
     });
+
+
+    // cria tabela que seja preenchida com os dados de um array de objetos
+    const criarTabela = function(dados) {
+        const tabela = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tbody = document.createElement("tbody");
+
+        // cria o cabeçalho da tabela
+        const cabecalho = Object.keys[0];
+        const tr = document.createElement("tr");
+        cabecalho.forEach(function(campo) {
+        const th = document.createElement("th");
+        th.textContent = campo;
+        tr.appendChild(th);
+    });
+
+    thead.appendChild (tr);
+    tabela.appendChild (thead);
+
+    // cria o corpo da tabela
+    dados.forEach(function(item) {
+        const tr = document.createElement("tr");
+        cabecalho.forEach(function(campo) {
+            const td = document.createElement("td");
+            td.textContent = item[campo];
+            tr.appendChild(td);
+        });
+       tbody.appendChild(tr);
+
+    });
+    tabela.appendChild(tbody);   
+    
+    return tabela;
+    };
 
 
     </script>
