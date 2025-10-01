@@ -48,8 +48,7 @@
     <script>
 
 
-async function getData(url) {
-   
+async function getData(url) {   
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -63,7 +62,6 @@ async function getData(url) {
             console.error(error.message);
         }    
 }
-
     const limparSections = function () { 
         document.querySelectorAll(".minha-section").forEach(function(section) {
         section.style.display = "none";
@@ -79,26 +77,10 @@ async function getData(url) {
     secaoFabricantes.querySelectorAll("table").forEach(function(tabela) {
         tabela.remove();
     }); 
-    const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes"); 
+    const dadosFabricantes = await getData("http://localhost:8080/api/modelos"); 
 
     secaoFabricantes.appendChild(criarTabela(dadosFabricantes));
-});
-
-    
-    // // Evento de clique no botão fabricantes
-    // document.getElementById("bt-fabricantes").addEventListener("click", function(event) {
-    //     limparSections();
-    //     document.querySelector("#fabricantes").style.display = "block";
-    //     const dadosFabricantes = [
-    //     {ID: 1, Nome: "Toyota", Pais: "Japão"},
-    //     {ID: 2, Nome: "Ford", Pais: "EUA"},
-    //     {ID: 3, Nome: "Volswagen", Pais: "Alemanha"},
-    //     {ID: 4, Nome: "Hyundai", Pais: "Coréia do Sul"},
-    //     {ID: 5, Nome: "Fiat", Pais: "Itália"},
-    // ];
-    //     document.querySelector("#fabricantes").appendChild(criarTabela(dadosFabricantes));  
-    // });
-   
+});     
 
     // Evento de clique no botão modelos
     document.getElementById("bt-modelos").addEventListener("click", function(event) {
@@ -145,41 +127,6 @@ async function getData(url) {
     table.appendChild(tbody);   
     return table;
 }
-
-
-    // function criarTabela(dados) {
-    //     const table = document.createElement("table");
-    //     const thead = document.createElement("thead");
-    //     const tbody = document.createElement("tbody");
-
-    //     // cria o cabeçalho da tabela
-    //     const cabecalho = Object.keys(dados[0]);        
-    //     const tr = document.createElement("tr");
-    //     cabecalho.forEach(function(campo) {
-    //         const th = document.createElement("th");
-    //         th.textContent = campo;
-    //         tr.appendChild(th);
-    // });
-
-    // thead.appendChild (tr);
-    // table.appendChild (thead);
-
-    // // cria o corpo da tabela
-    // dados.forEach(function(item) {
-    //     const tr = document.createElement("tr");
-    //     cabecalho.forEach(function(campo) {
-    //         const td = document.createElement("td");
-    //         td.textContent = item[campo];
-    //         tr.appendChild(td);
-    //     });
-    //    tbody.appendChild(tr);
-
-    // });
-    // tbody.appendChild(tr);
-    // table.appendChild(tbody);   
-    
-    // return table;
-    // };
 
     </script>
 </body>
