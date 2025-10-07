@@ -3,8 +3,11 @@
     <meta charset="UTF-8">
     <title>Pagina de automoveis</title>
     <link rel="stylesheet" href="styles.css">
-   
+    <script defer src="eventoClick.js"></script>
+    <script src="comum.js"></script>
+    <script src="gerenciarElementos.js"></script>   
 </head>
+
 <body>
     <header class="site-header">
         <div class="brand">
@@ -19,6 +22,7 @@
                 <span class="brand-text">MultiCar</span>
             </a>
         </div>
+        
         <nav class="main-nav" aria-label="Menu principal">
             <ul>
                 <li><a href="#fabricantes" id="bt-fabricantes">Fabricantes</a></li>
@@ -45,89 +49,8 @@
             <p>Informações sobre veículos disponíveis</p>      
         </section>
     </main>
-    <script>
 
-
-async function getData(url) {   
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const result = await response.json();
-       return result;
-        }
-        catch (error) {
-            console.error(error.message);
-        }    
-}
-    const limparSections = function () { 
-        document.querySelectorAll(".minha-section").forEach(function(section) {
-        section.style.display = "none";
-    });
-    };
-
-
-    document.getElementById("bt-fabricantes").addEventListener("click", async function(event) {
-    limparSections();
-    const secaoFabricantes = document.querySelector("#fabricantes");
-    secaoFabricantes.style.display = "block";
-    // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
-    secaoFabricantes.querySelectorAll("table").forEach(function(tabela) {
-        tabela.remove();
-    }); 
-    const dadosFabricantes = await getData("http://localhost:8080/api/modelos"); 
-
-    secaoFabricantes.appendChild(criarTabela(dadosFabricantes));
-});     
-
-    // Evento de clique no botão modelos
-    document.getElementById("bt-modelos").addEventListener("click", function(event) {
-        limparSections();
-        document.querySelector("#modelos").style.display = "block";
-    });
-
-    // Evento de clique no botão veículos
-    document.getElementById("bt-veiculos").addEventListener("click", function(event) {
-        limparSections();
-        document.querySelector("#veiculos").style.display = "block";
-    });
-
-
-    // cria tabela que seja preenchida com os dados de um array de objetos
-    function criarTabela(dados) {
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const tbody = document.createElement("tbody");
-
-    // cria o cabeçalho da tabela
-    const cabecalho = Object.keys(dados[0]);        
-    const trHead = document.createElement("tr");
-    cabecalho.forEach(function(campo) {
-        const th = document.createElement("th");
-        th.textContent = campo;
-        trHead.appendChild(th);
-    });
-
-    thead.appendChild(trHead);
-    table.appendChild(thead);
-
-    // cria o corpo da tabela
-    dados.forEach(function(item) {
-        const trBody = document.createElement("tr");
-        cabecalho.forEach(function(campo) {
-            const td = document.createElement("td");
-            td.textContent = item[campo];
-            trBody.appendChild(td);
-        });
-        tbody.appendChild(trBody);
-    });
-
-    table.appendChild(tbody);   
-    return table;
-}
-
-    </script>
 </body>
+
+
 </html>
