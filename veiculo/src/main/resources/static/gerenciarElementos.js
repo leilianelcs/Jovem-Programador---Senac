@@ -3,22 +3,21 @@
         */
         
         // cria tabela que seja preenchida com os dados de um array de objetos
-        function criarTabela(dados) {
-            const table = document.createElement("table");
-            const thead = document.createElement("thead");
-            const tbody = document.createElement("tbody");
+function criarTabela(dados) {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
         
-            // cria o cabeçalho da tabela
-            const cabecalho = Object.keys(dados[0]);        
-            const trHead = document.createElement("tr");
-            cabecalho.forEach(function(campo) {
-                const th = document.createElement("th");
-                th.textContent = campo;
-                trHead.appendChild(th);
-            });
-        
-            thead.appendChild(trHead);
-            table.appendChild(thead);
+        // cria o cabeçalho da tabela
+    const cabecalho = Object.keys(dados[0]);        
+    const trHead = document.createElement("tr");
+    cabecalho.forEach(function(campo) {
+        const th = document.createElement("th");
+            th.textContent = campo;
+            trHead.appendChild(th);
+        });        
+    thead.appendChild(trHead);
+    table.appendChild(thead);
         
             // cria o corpo da tabela
             dados.forEach(function(item) {
@@ -34,7 +33,6 @@
             table.appendChild(tbody);   
             return table;
         }
-
         
         /*
         Função para mostrar ou ocultar elementos

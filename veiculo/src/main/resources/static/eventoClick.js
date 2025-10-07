@@ -8,7 +8,7 @@
         secaoFabricantes.querySelectorAll("table").forEach(function(tabela) {
             tabela.remove();
         }); 
-        
+
         const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes"); 
         secaoFabricantes.appendChild(criarTabela(dadosFabricantes));
     });     
@@ -35,7 +35,7 @@
         const secaoVeiculos = document.querySelector("#veiculos");
         secaoVeiculos.style.display = "block";
 
-         // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
+        // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
         secaoVeiculos.querySelectorAll("table").forEach(function(tabela) {
             tabela.remove();
         }); 
