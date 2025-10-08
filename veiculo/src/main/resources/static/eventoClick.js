@@ -6,11 +6,11 @@
 
         // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
         secaoFabricantes.querySelectorAll("table").forEach(function(tabela) {
-            tabela.remove();
+             tabela.remove();
         }); 
 
-        const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes"); 
-        secaoFabricantes.appendChild(criarTabela(dadosFabricantes));
+        const dadosFabricantes = await getData("http://localhost:8080/api/modelos"); 
+        secaoFabricantes.appendChild(criarTabela(dadosFabricantes, "Fabricantes", "tabela-dados"));
     });     
 
     // Evento de clique no botão Modelos
@@ -19,13 +19,13 @@
         const secaoModelos = document.querySelector("#modelos");
         secaoModelos.style.display = "block";
 
-        // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
+       // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
         secaoModelos.querySelectorAll("table").forEach(function(tabela) {
-         tabela.remove();
+          tabela.remove();
         }); 
 
         const dadosModelos = await getData("http://localhost:8080/api/modelos");
-        secaoModelos.appendChild(criarTabela(dadosModelos));
+        secaoModelos.appendChild(criarTabela(dadosModelos, "Modelos", "tabela-dados"));
        
     });
 
@@ -37,9 +37,9 @@
 
         // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
         secaoVeiculos.querySelectorAll("table").forEach(function(tabela) {
-            tabela.remove();
+             tabela.remove();
         }); 
 
         const dadosVeiculos = await getData("http://localhost:8080/api/veiculos");
-        secaoVeiculos.appendChild(criarTabela(dadosVeiculos));
+        secaoVeiculos.appendChild(criarTabela(dadosVeiculos, "Veiculos", "tabela-dados"));
     });
