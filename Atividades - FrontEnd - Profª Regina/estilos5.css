@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 40px;
+  color: #333;
+  }
+
+.caixa {
+  width: 400px;
+  height: 200px;
+  background-color: lightblue;
+  margin: 20px;
+  padding: 30px;
+  border: 2px solid darkblue;
+  }
+  
+.caixa p {
+  color: navy;
+  font-size: 1.1em;
+  }
+  
+p {
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-left: 5px solid #94d2bd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+h1 {
+  color: blue;
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-align: center;
+  }
+
+
+h3 {
+    text-align: center;
+    }
+
+img {
+ /* float: left;*/
+  display: block;
+  margin: 0 auto;
+  align-items: center;   
+  }

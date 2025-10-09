@@ -1,0 +1,8 @@
+.exercise3-box {
+    position: relative;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    border-radius: 10px;
+}

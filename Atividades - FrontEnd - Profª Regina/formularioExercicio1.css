@@ -1,0 +1,132 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6f0fa;
+    color: #333;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.link-senha {
+    font-size: 14px;
+    color: #336699;
+    text-decoration: none;
+    margin-top: -10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+    
+}
+
+.link-senha:hover {
+    color: #1a4d80;
+    text-decoration: underline;
+}
+
+
+h1.cadastro {
+    text-align: center;
+    color: #336699;
+    margin-bottom: 20px;
+}
+h4 {
+    font-size: 12px;
+}
+form {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 50, 0.1);
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #2a4d6f;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #b3cce6;
+    border-radius: 8px;
+    background-color: #f7fbff;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #6699cc;
+    outline: none;
+}
+
+button {
+    background-color: #6699cc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;  
+}
+
+button:hover {
+    background-color: #4d80b0;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+    margin-left: 4px;
+    cursor: help; /* muda o cursor para indicar que há uma dica */
+}
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #2a4d6f;
+}
+
+.senha-opcoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.senha-opcoes .link-senha {
+    font-size: 14px;
+    color: #336699;
+    text-decoration: none;
+}
+
+.senha-opcoes .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #2a4d6f;
+}
+
+
+

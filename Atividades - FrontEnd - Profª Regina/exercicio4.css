@@ -1,0 +1,18 @@
+.exercise4-box {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    animation: blink-colors 3s infinite;
+}
+
+@keyframes blink-colors {
+    0% { 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    }
+    50% { 
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+    }
+    100% { 
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+    }
+}

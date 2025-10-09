@@ -1,0 +1,17 @@
+.exercise5-container {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.exercise5-box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: transform 0.2s ease-out;
+    left: 0;
+    top: 0;
+}

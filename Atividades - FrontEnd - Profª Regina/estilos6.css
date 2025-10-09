@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 40px;
+  color: #333;
+  }
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+p.texto-verde {
+  color: green; 
+  }
+  
+p.texto-vermelho {
+  color: red; 
+  }
+
+#titulo-principal {
+  color: purple;
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  text-align: center;
+  }

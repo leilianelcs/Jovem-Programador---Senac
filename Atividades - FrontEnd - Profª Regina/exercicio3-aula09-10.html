@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Minha primera página</title>  
+        <link rel="stylesheet" href="exercicio3.css" />     
+</head>
+<body>
+    <div class="box exercise3-box"></div>
+<button class="btn" id="start-exercise3">Mover Caixa</button>
+</body>
+<script>
+    const exercise3Box = document.querySelector('.exercise3-box');
+const startExercise3 = document.getElementById('start-exercise3');
+let pos = 0;
+
+function moveRight() {
+    pos += 2; // Incrementa 2px por frame
+    exercise3Box.style.left = pos + 'px';
+    
+    if (pos < 300) { // Move até 300px
+        requestAnimationFrame(moveRight);
+    }
+}
+
+startExercise3.addEventListener('click', () => {
+    pos = 0; // Reseta a posição
+    requestAnimationFrame(moveRight);
+});
+</script>
+</html>

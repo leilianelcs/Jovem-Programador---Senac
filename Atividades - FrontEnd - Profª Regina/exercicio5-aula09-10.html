@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Minha primera página</title>  
+        <link rel="stylesheet" href="exercicio5.css" />     
+</head>
+<body>
+       
+    <div class="demo-box exercise5-container">
+        <div class="box exercise5-box"></div>
+    </div>
+
+</body>
+<script>    
+    const exercise5Box = document.querySelector('.exercise5-box');
+const container = document.querySelector('.exercise5-container');
+
+container.addEventListener('mousemove', (e) => {
+    // Calcula posição relativa ao container
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left - (exercise5Box.clientWidth / 2);
+    const y = e.clientY - rect.top - (exercise5Box.clientHeight / 2);
+    
+    // Aplica a transformação
+    exercise5Box.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+</script>
+</html>

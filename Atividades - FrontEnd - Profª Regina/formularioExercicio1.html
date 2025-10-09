@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="formularioExercicio1.css"> 
+</head>
+
+
+<body>
+    <div class="container">
+       <h1>Formulário - Exercício 1 - 11/09</h1>
+        <form action="/enviar-dados" method="POST">
+
+            <label for="email">Email: <span class="required" title="Campo obrigatório">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="exemplo@dominio.com"><br><br>
+            
+            <label for="senha">Senha:<span class="required" title="Campo obrigatório">*</span></label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha"><br><br>
+           
+            <div class="senha-opcoes">
+                <a href="/recuperar-senha" class="link-senha">Esqueci minha senha</a>
+            
+                <div class="checkbox-container">
+                    <input type="checkbox" id="lembrar" name="lembrar">
+                    <label for="lembrar">Lembrar-me</label>
+                </div>
+            </div><br>
+                      
+    
+            <h4><span class="required">*</span> Campo obrigatório</h4>
+           
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
