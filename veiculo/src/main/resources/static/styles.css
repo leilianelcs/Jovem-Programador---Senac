@@ -1,6 +1,6 @@
 /* Reset basico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933; align-items: center;}
 
 :root {
   --brand-dark: #0d47a1;
@@ -14,6 +14,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   --radius-lg: 16px;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  
 }
 
 .site-header {
@@ -59,12 +60,14 @@ table {
   font-size: 14px;  
 }
 
-thead {
+thead, th {
   background-color: #0d47a1;
   color: white;
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
-th, td {
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;

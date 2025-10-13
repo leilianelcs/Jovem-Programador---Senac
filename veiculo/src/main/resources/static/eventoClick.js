@@ -7,9 +7,9 @@
         // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
         secaoFabricantes.querySelectorAll("table").forEach(function(tabela) {
              tabela.remove();
-        }); 
+        });
 
-        const dadosFabricantes = await getData("http://localhost:8080/api/modelos"); 
+        const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes"); 
         secaoFabricantes.appendChild(criarTabela(dadosFabricantes, "Fabricantes", "tabela-dados"));
     });     
 
