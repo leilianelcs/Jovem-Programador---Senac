@@ -1,4 +1,4 @@
-const criarTabelaModelo = function(dados) {
+const criarTabelaFabricante = function(dados) {
     const tabela = document.createElement("table");
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
@@ -6,13 +6,13 @@ const criarTabelaModelo = function(dados) {
     // Cabeçalho principal
     const trTitle = document.createElement("tr");
     const thTitle = document.createElement("th");
-    thTitle.textContent = "Modelos";
-    thTitle.colSpan = 3;
+    thTitle.textContent = "Fabricantes";
+    thTitle.colSpan = 2;
     trTitle.appendChild(thTitle);
     thead.appendChild(trTitle);
 
     // Cabeçalho das colunas
-    const cabecalho = ["Modelo", "Fabricante", "País de Origem"];
+    const cabecalho = ["Fabricante", "País de Origem"];
     const trCabecalho = document.createElement("tr");
     cabecalho.forEach(function(campo) {
         const th = document.createElement("th");
@@ -29,19 +29,14 @@ const criarTabelaModelo = function(dados) {
     dados.forEach(function(item) {
         const tr = document.createElement("tr");
 
-        // Modelo
-        const tdModelo = document.createElement("td");
-        tdModelo.textContent = item.nome;
-        tr.appendChild(tdModelo);
-
         // Fabricante
         const tdFabricante = document.createElement("td");
-        tdFabricante.textContent = item.fabricante.nome;
+        tdFabricante.textContent = item.nome;
         tr.appendChild(tdFabricante);
 
         // País de origem
         const tdPaisOrigem = document.createElement("td");
-        tdPaisOrigem.textContent = item.fabricante.paisOrigem;
+        tdPaisOrigem.textContent = item.paisOrigem;
         tr.appendChild(tdPaisOrigem);
 
         tbody.appendChild(tr);

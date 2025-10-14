@@ -10,7 +10,7 @@
         });
 
         const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes"); 
-        secaoFabricantes.appendChild(criarTabela(dadosFabricantes, "Fabricantes", "tabela-dados"));
+        secaoFabricantes.appendChild(criarTabelaFabricante(dadosFabricantes));
     });     
 
     // Evento de clique no botão Modelos

@@ -6,8 +6,8 @@ const criarTabelaVeiculo = function(dados) {
     // Cabeçalho principal
     const trTitle = document.createElement("tr");
     const thTitle = document.createElement("th");
-    thTitle.textContent = "Modelos";
-    thTitle.colSpan = 3;
+    thTitle.textContent = "Veículos";
+    thTitle.colSpan = 9;
     trTitle.appendChild(thTitle);
     thead.appendChild(trTitle);
 
@@ -60,10 +60,10 @@ const criarTabelaVeiculo = function(dados) {
         tdDataCadastro.textContent = item.dataCadastro;
         tr.appendChild(tdDataCadastro);
 
-        // // Modelo
-        // const tdModelo = document.createElement("td");
-        // tdModelo.textContent = item.modelo.nome;
-        // tr.appendChild(tdModelo);
+        // Modelo
+        const tdModelo = document.createElement("td");
+        tdModelo.textContent = item.modelo.nome;
+        tr.appendChild(tdModelo);
 
         // Fabricante
         const tdFabricante = document.createElement("td");

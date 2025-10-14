@@ -1,6 +1,6 @@
 /* Reset basico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933; align-items: center;}
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933;}
 
 :root {
   --brand-dark: #0d47a1;
@@ -49,13 +49,15 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
 .logo svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
 
 .minha-section {
-  display: none;
-}
-
+  display: none;  
+ }
+ 
 table {
   width: 30%;
   border-collapse: collapse;
   margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
   font-family: Arial, sans-serif;
   font-size: 14px;  
 }
