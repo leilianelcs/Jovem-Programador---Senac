@@ -25,9 +25,22 @@
         }); 
 
         const dadosModelos = await getData("http://localhost:8080/api/modelos");
-        secaoModelos.appendChild(criarTabela(dadosModelos, "Modelos", "tabela-dados"));
+        secaoModelos.appendChild(criarTabelaModelo(dadosModelos));
        
     });
+
+
+    //    // Código professor:
+    //    // Evento de clique no botão Modelos
+    //   document.getElementById("bt-modelos").addEventListener("click", async function(event) {
+    //     setShowHide(true, ".minha-section");
+    //     setRemoverElementos(".tabela-dados");     
+    //     document.querySelector("#modelos").style.display = "block";   
+    //     const dadosModelo = await getData("http://localhost:8080/api/modelos");
+    //     document.querySelector("#modelos").appendChild(criarTabelaModelo(dadosModelo)); 
+    // });
+
+
 
     // Evento de clique no botão veículos
     document.getElementById("bt-veiculos").addEventListener("click", async function(event) {
@@ -41,5 +54,5 @@
         }); 
 
         const dadosVeiculos = await getData("http://localhost:8080/api/veiculos");
-        secaoVeiculos.appendChild(criarTabela(dadosVeiculos, "Veiculos", "tabela-dados"));
+        secaoVeiculos.appendChild(criarTabelaVeiculo(dadosVeiculos));
     });
