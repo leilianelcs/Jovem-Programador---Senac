@@ -1,6 +1,10 @@
 /* Reset basico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933;}
+body { 
+  font-family: 'Segoe UI', Arial, sans-serif; 
+  background: #f5f7fa; 
+  color: #1f2933; 
+}
 
 :root {
   --brand-dark: #0d47a1;
@@ -13,8 +17,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   --radius-md: 8px;
   --radius-lg: 16px;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);  
 }
 
 .site-header {
@@ -49,8 +52,16 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
 .logo svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
 
 .minha-section {
-  display: none;  
- }
+  display: none;
+  width: 60%; /* ou outro valor que funcione bem visualmente */
+  margin: 2em auto; /* centraliza horizontalmente e adiciona espaçamento vertical */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  background-color: #fff; /* opcional, para destacar a seção */
+  border-radius: var(--radius-md); /* usa seu padrão de borda arredondada */
+  box-shadow: var(--shadow-sm); /* usa sua sombra leve */
+}
  
 table {
   width: 30%;
