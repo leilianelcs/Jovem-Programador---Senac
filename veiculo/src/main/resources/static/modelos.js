@@ -7,12 +7,12 @@ const criarTabelaModelo = function(dados) {
     const trTitle = document.createElement("tr");
     const thTitle = document.createElement("th");
     thTitle.textContent = "Modelos";
-    thTitle.colSpan = 3;
+    thTitle.colSpan = 5;
     trTitle.appendChild(thTitle);
     thead.appendChild(trTitle);
 
     // Cabeçalho das colunas
-    const cabecalho = ["Modelo", "Fabricante", "País de Origem"];
+    const cabecalho = ["ID", "Modelo", "Fabricante", "País de Origem", "Ação"];
     const trCabecalho = document.createElement("tr");
     cabecalho.forEach(function(campo) {
         const th = document.createElement("th");
@@ -29,6 +29,11 @@ const criarTabelaModelo = function(dados) {
     dados.forEach(function(item) {
         const tr = document.createElement("tr");
 
+        // ID
+        const tdId = document.createElement("td");
+        tdId.textContent = item.id;
+        tr.appendChild(tdId);
+        
         // Modelo
         const tdModelo = document.createElement("td");
         tdModelo.textContent = item.nome;
@@ -43,6 +48,35 @@ const criarTabelaModelo = function(dados) {
         const tdPaisOrigem = document.createElement("td");
         tdPaisOrigem.textContent = item.fabricante.paisOrigem;
         tr.appendChild(tdPaisOrigem);
+
+         // Ícones
+         const deletar = document.createElement("td");
+         deletar.innerHTML = '<button class="btn delete">Deletar</button>';
+         deletar.addEventListener("click", async function () {
+            const confirmacao = confirm(`Tem certeza que deseja deletar o modelo com ID ${item.id}?`);
+            if (!confirmacao) return;
+        
+            try {
+                const resposta = await fetch(`http://localhost:8080/api/modelos/${item.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"                       
+                    }
+                });
+        
+                if (resposta.ok) {
+                    tr.remove(); 
+                    alert(`Modelo com ID ${item.id} deletado com sucesso.`);
+                } else {
+                    const erro = await resposta.json();
+                    alert(`Erro ao deletar: ${erro.message || resposta.statusText}`);
+                }
+            } catch (erro) {
+                alert(`Erro de conexão: ${erro.message}`);
+            }
+        }); 
+        tr.appendChild(deletar);      
+ 
 
         tbody.appendChild(tr);
     });

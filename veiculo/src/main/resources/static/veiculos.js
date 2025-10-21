@@ -7,13 +7,13 @@ const criarTabelaVeiculo = function(dados) {
     const trTitle = document.createElement("tr");
     const thTitle = document.createElement("th");
     thTitle.textContent = "Veículos";
-    thTitle.colSpan = 9;
+    thTitle.colSpan = 11;
     trTitle.appendChild(thTitle);
     thead.appendChild(trTitle);
 
    
     // Cabeçalho das colunas placa cor valor ano descricao dataCadastro modelo
-    const cabecalho = ["Placa", "Cor", "Valor", "Ano", "Descrição", "Data Cadastro", "Modelo", "Fabricante", "País de Origem"];
+    const cabecalho = ["ID", "Placa", "Cor", "Valor", "Ano", "Descrição", "Data Cadastro", "Modelo", "Fabricante", "País de Origem", "Ação"];
     const trCabecalho = document.createElement("tr");
     cabecalho.forEach(function(campo) {
         const th = document.createElement("th");
@@ -29,6 +29,11 @@ const criarTabelaVeiculo = function(dados) {
     // Corpo da tabela
     dados.forEach(function(item) {
         const tr = document.createElement("tr");
+       
+        // ID
+        const tdId = document.createElement("td");
+        tdId.textContent = item.id;
+        tr.appendChild(tdId);
 
         // Placa
         const tdPlaca = document.createElement("td");
@@ -74,6 +79,36 @@ const criarTabelaVeiculo = function(dados) {
         const tdPaisOrigem = document.createElement("td");
         tdPaisOrigem.textContent = item.modelo.fabricante.paisOrigem;
         tr.appendChild(tdPaisOrigem);
+
+        // Ícones
+        const deletar = document.createElement("td");
+        deletar.innerHTML = '<button class="btn delete">Deletar</button>';
+        deletar.addEventListener("click", async function () {
+            const confirmacao = confirm(`Tem certeza que deseja deletar o veículo com ID ${item.id}?`);
+            if (!confirmacao) return;
+        
+            try {
+                const resposta = await fetch(`http://localhost:8080/api/veiculos/${item.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"                       
+                    }
+                });
+        
+                if (resposta.ok) {
+                    tr.remove(); 
+                    alert(`Veículo com ID ${item.id} deletado com sucesso.`);
+                } else {
+                    const erro = await resposta.json();
+                    alert(`Erro ao deletar: ${erro.message || resposta.statusText}`);
+                }
+            } catch (erro) {
+                alert(`Erro de conexão: ${erro.message}`);
+            }
+        });        
+   
+       tr.appendChild(deletar);      
+
 
         tbody.appendChild(tr);
     });
