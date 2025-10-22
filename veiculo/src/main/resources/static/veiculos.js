@@ -107,7 +107,7 @@ const criarTabelaVeiculo = function(dados) {
             }
         });        
    
-       tr.appendChild(deletar);      
+       tr.appendChild(deletar);
 
 
         tbody.appendChild(tr);

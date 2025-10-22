@@ -54,6 +54,12 @@ public class ModeloService {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Modelo não encontrado");
         }
+
+        // Verificar se existem veículos associados a este modelo
+        if (repository.temVeiculosAssociados(id)) {
+            throw new RuntimeException("Não é possível excluir o modelo. Existem veículos associados a ele.");
+        }
+
         repository.deleteById(id);
     }
 

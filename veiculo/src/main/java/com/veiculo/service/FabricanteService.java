@@ -59,6 +59,12 @@ public class FabricanteService {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Fabricante não encontrado");
         }
+        // // Verificar se existem modelos associados a este fabricante
+        // if (repository.temModelosAssociados(id)) {
+        // throw new RuntimeException("Não é possível excluir o fabricante. Existem
+        // modelos associados a ele.");
+        // }
+
         repository.deleteById(id);
     }
 }

@@ -37,12 +37,22 @@ public class GlobalExceptionHandler {
         String msg = ex.getMessage();
         if (msg != null) {
             String lower = msg.toLowerCase();
-            if (lower.contains("não encontrado")) {
-                // log.debug("Recurso não encontrado: {}", msg);
+            if (lower.contains("nao encontrado")) {
                 return body(HttpStatus.NOT_FOUND, msg); // 404
             }
+
+            // Tratamento para violação de integridade referencial
+            if (lower.contains("veiculos associados") ||
+                    lower.contains("nao e possivel excluir") ||
+                    lower.contains("existem veiculos")) {
+                return body(HttpStatus.CONFLICT, msg); // 409
+            }
+
+            if (lower.contains("modelos associados") ||
+                    lower.contains("existem modelos")) {
+                return body(HttpStatus.CONFLICT, msg); // 409
+            }
         }
-        // log.error("Erro inesperado", ex);
         return body(HttpStatus.INTERNAL_SERVER_ERROR, msg); // 500
     }
 
@@ -60,7 +70,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrity(DataIntegrityViolationException ex) {
         // log.error("Violação de integridade", ex);
-        return body(HttpStatus.CONFLICT, "Item não pode ser excluído, pois tem informações adicionais");
+        return body(HttpStatus.CONFLICT, "Violação de integridade");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -13,3 +13,46 @@ async function getData(url) {
     return error;
   }
 }
+
+async function setDelete(url) {
+  try {
+    const response = await fetch(url, { method: "DELETE"});
+
+    if (response.ok) {
+      return {success: true, message: "Excluído com sucesso"};      
+    } else { 
+      //erro de exception
+      const error = await response.json();
+      return {error: true}
+      try {
+        
+      } catch (error) {
+        
+      }
+      
+    }
+    
+  } catch (error) {
+    
+  }
+  
+}
+
+// verifica se a resposta é sucesso
+function isSuccess(response) {
+  return response && !response.error;
+}
+
+
+// function mostrarErro(response) {
+//   if (response.message) {
+//     let mensagem = 
+    
+//   } else {
+    
+//   }
+
+//}
+
+
+                    
