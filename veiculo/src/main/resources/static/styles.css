@@ -47,6 +47,12 @@ body {
 .btn.outline { background: #fff; border-color: var(--brand-dark); color: var(--brand-dark); }
 .btn.outline:hover { background: var(--brand-accent-soft); border-color: var(--brand-mid); }
 .btn:focus { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+/* 
+#novo-fabricante { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
 
 /* Logo SVG refinamento */
 .logo svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
@@ -90,6 +96,31 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+#modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  width: 300px;
+  height: auto;
+
+}
+
+#close-modal {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+ }
+
+#modal-title {
+
+}
 
 /* Responsividade */
 @media (max-width: 900px) {

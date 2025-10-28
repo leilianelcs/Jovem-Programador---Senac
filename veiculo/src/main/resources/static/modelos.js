@@ -55,6 +55,7 @@ const criarTabelaModelo = function(dados) {
          deletar.addEventListener("click", async function () {
             const confirmacao = confirm(`Tem certeza que deseja deletar o modelo com ID ${item.id}?`);
             if (!confirmacao) return;
+
             try {
                 const resposta = await fetch(`http://localhost:8080/api/modelos/${item.id}`, {
                     method: "DELETE",
@@ -73,6 +74,7 @@ const criarTabelaModelo = function(dados) {
             } catch (erro) {
                 alert(`Erro de conexão: ${erro.message}`);
             }
+        }); 
 
         //     try {
         //         const resultado = await setDelete(`http://localhost:8080/api/modelos/${item.id}`);
@@ -88,9 +90,8 @@ const criarTabelaModelo = function(dados) {
         //     }
         // }); 
         
-        tr.appendChild(deletar);      
- 
-
+        tr.appendChild(deletar);
+        
         tbody.appendChild(tr);
     });
 
