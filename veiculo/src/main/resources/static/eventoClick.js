@@ -32,12 +32,63 @@ CLOSE_MODAL_BUTTON.addEventListener("click", function (event) {
   MODAL.style.display = "none";
 });
 
-// Evento de clique no botão Novo Fabricante
+// Evento de click no botão Novo Fabricante
 document
   .getElementById("novo-fabricante")
   .addEventListener("click", function (event) {
+    setShowHide(true, ".modal-content");    
     MODAL.style.display = "block";
+    setShowHide(false, ".modal-content-fabricante");  
   });
+
+  // Evento de clique no botão Enviar - Novo Fabricante
+  document.getElementById("form-fabricante").addEventListener("submit", async function (event) {
+    event.preventDefault();
+  
+    const nome = document.getElementById("nome-fabricante").value.trim();
+    const paisOrigem = document.getElementById("pais-fabricante").value;
+  
+    if (!nome || !paisOrigem) {
+      alert("Preencha todos os campos.");
+      return;
+    }
+  
+    const novoFabricante = { nome, paisOrigem };
+  
+    try {
+      const resposta = await fetch("http://localhost:8080/api/fabricantes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(novoFabricante)
+      });
+  
+      if (resposta.ok) {
+        const fabricanteCriado = await resposta.json();
+        alert("Fabricante adicionado com sucesso!");
+  
+        // Fecha o modal
+        MODAL.style.display = "none";
+        document.getElementById("form-fabricante").reset();
+  
+        // Atualiza a tabela de fabricantes
+        const secaoFabricantes = document.querySelector("#fabricantes");
+        secaoFabricantes.querySelectorAll("table").forEach(function (tabela) {
+          tabela.remove();
+        });
+  
+        const dadosAtualizados = await getData("http://localhost:8080/api/fabricantes");
+        secaoFabricantes.appendChild(criarTabelaFabricante(dadosAtualizados));
+      } else {
+        const erro = await resposta.json();
+        alert(`Erro ao adicionar: ${erro.message || resposta.statusText}`);
+      }
+    } catch (erro) {
+      alert(`Erro de conexão: ${erro.message}`);
+    }
+  });
+
 
 // Evento de clique no botão Modelos
 document

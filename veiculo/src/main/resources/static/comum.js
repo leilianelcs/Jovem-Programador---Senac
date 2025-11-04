@@ -26,8 +26,7 @@ async function setDelete(url) {
       return {error: true}
       try {
         
-      } catch (error) {
-        
+      } catch (error) {        
       }
       
     }
@@ -53,6 +52,3 @@ function isSuccess(response) {
 //   }
 
 //}
-
-
-                    
