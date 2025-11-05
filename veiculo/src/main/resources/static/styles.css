@@ -96,6 +96,11 @@ td {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+#modal {
+  display: none;
+}
+
 /* 
 #modal {
   display: none;
@@ -185,7 +190,9 @@ tr:nth-child(even) {
 }
  
 /* Conteúdo interno */
-#modal-content-fabricante {
+#modal-content-fabricante,
+#modal-content-modelo,
+#modal-content-veiculo {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -200,11 +207,14 @@ tr:nth-child(even) {
 }
  
 /* Inputs e labels */
-#modal-content-fabricante label {
-  font-weight: 500;
+#modal label {
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
 }
  
-#modal-content-fabricante input {
+
+#modal input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -212,7 +222,9 @@ tr:nth-child(even) {
 }
  
 /* Botão enviar */
-#modal-content-fabricante button {
+#modal-content-fabricante button,
+#modal-content-modelo button,
+#modal-content-veiculo button {
   background-color: #0d47a1;
   color: white;
   border: none;
@@ -222,22 +234,38 @@ tr:nth-child(even) {
   margin-top: 10px;
 }
  
-#modal-content-fabricante button:hover {
+#modal-content-fabricante button:hover,
+#modal-content-modelo button:hover,
+#modal-content-veiculo button:hover {
   background-color: #1565c0;
 }
 
-#modal-content-fabricante select {
+#modal-content-fabricante select,
+#modal-content-modelo select,
+#modal-content-veiculo select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
 }
- 
+
+#form-modelo,
 #form-fabricante {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
+
+
+.btn-novo {
+  margin-top: 20px;
+  background: var(--brand-accent);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+} 
 
 
 /* Responsividade */

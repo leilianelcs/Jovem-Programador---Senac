@@ -12,3 +12,9 @@ const setShowHide = function (esconder, elemento) {
     section.style.display = esconder ? "none" : "block";
   });
 };
+
+const setRemoverElementos = function(elemento) {
+  document.querySelectorAll(elemento).forEach(function(item) {
+      item.remove();
+  });
+}

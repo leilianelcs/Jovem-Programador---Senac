@@ -63,34 +63,21 @@
                      <button type="submit" class="botao-enviar">Enviar</button>
                 </form>
             </div>
-        </div>
-        <section id="fabricantes" class="minha-section">
-            <h2>Fabricantes</h2>
-            <p>Informações sobre fabricantes de automóveis</p>     
-            <span><button id="novo-fabricante" class="btn novo">Novo Fabricante</button></span>  
-        </section>
 
-        <!-- Modal cadatro de Modelos -->
-        <div id="modal-content-modelo" class="modal-content modal-content-modelo">                              
-            <div id="modal-title">Cadastro de Modelo</div>           
-            <form id="form-modelo">
-             <label for="nome-modelo">Nome do Modelo:</label>
-             <input type="text" id="nome-modelo" name="nome-modelo" required>
-             <br>
-             <label for="fabricante-modelo">Fabricante:</label>
-                 <select id="fabricante-modelo" name="fabricante-modelo" required>                 
-                 </select>               
-                 <button class="botao-enviar">Enviar</button>
-            </form>
-        </div>
-
-        <section id="modelos" class="minha-section">
-             <h2>Modelos</h2>
-            <p>Informações sobre modelos disponíveis</p>  
-            <span><button id="novo-modelo" class="btn novo">Novo Modelo</button></span>
-        </section>
-
-         <!-- Modal cadatro de Veículos -->
+            <!-- Modal cadatro de Modelos -->
+            <div id="modal-content-modelo" class="modal-content modal-content-modelo">                              
+                <div id="modal-title">Cadastro de Modelo</div>           
+                <form id="form-modelo">
+                <label for="nome-modelo">Nome do Modelo:</label>
+                <input type="text" id="nome-modelo" name="nome-modelo" required>
+                <br>
+                <label for="fabricante-modelo">Fabricante:</label>
+                    <select id="fabricante-modelo" name="fabricante-modelo" required>                 
+                    </select>               
+                    <button class="botao-enviar">Enviar</button>
+                </form>
+            </div>
+            <!-- Modal cadatro de Veículos -->
          <div id="modal-content-veiculo" class="modal-content modal-content-veiculo">                              
             <div id="modal-title">Cadastro de Veículo</div>
             <form id="form-veiculo">
@@ -100,7 +87,7 @@
                 <label for="modelo-veiculo">Modelo do Veículo:</label>
                 <select id="modelo-veiculo" name="modelo-veiculo" required>                 
                 </select>
-             <br />
+                <br />
                 <label for="placa-veiculo">Placa do Veículo:</label>
                 <input type="text" id="placa-veiculo" name="placa-veiculo" required>                
                 <label for="cor-veiculo">Cor do Veículo:</label>
@@ -114,11 +101,24 @@
 
             </form>
         </div>
+        </div>
+
+        <section id="fabricantes" class="minha-section">
+            <h2>Fabricantes</h2>
+            <p>Informações sobre fabricantes de automóveis</p>     
+            <span><button id="novo-fabricante" class="btn-novo">Novo Fabricante</button></span>  
+        </section>        
+
+        <section id="modelos" class="minha-section">
+             <h2>Modelos</h2>
+            <p>Informações sobre modelos disponíveis</p>  
+            <span><button id="novo-modelo" class="btn-novo">Novo Modelo</button></span>
+        </section>         
 
         <section id="veiculos" class="minha-section">
             <h2>Veículos</h2>
            <p>Informações sobre Veículos disponíveis</p>  
-           <span><button id="novo-veiculo" class="btn novo">Novo Veículo</button></span>
+           <span><button id="novo-veiculo" class="btn-novo">Novo Veículo</button></span>
        </section>
 
     </main>

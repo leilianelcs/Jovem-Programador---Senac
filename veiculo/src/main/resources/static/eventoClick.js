@@ -115,12 +115,30 @@ document
     secaoModelos.appendChild(criarTabelaModelo(dadosModelos));
   });
 
-// Evento de clique no botão Novo Modelo
-document
-  .getElementById("novo-modelo")
-  .addEventListener("click", function (event) {
-    alert("Função add modelo não implementada");
+// Evento de click para novo Modelo
+document.getElementById("novo-modelo").addEventListener("click", async function (event) {
+   setShowHide(true, ".modal-content");
+   //carregar fabricantes no select
+   const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes");
+   if(dadosFabricantes.status === 404 || dadosFabricantes.error) {
+    alert("Erro ao caregar dados dos fabricantes. Erro: " + dadosFabricantes.message);
+    return;
+   }
+
+   setRemoverElementos("#fabricante-modelo option");
+
+   document.getElementById("fabricante-modelo").appendChild(new Option("Selecione um fabricante", ""));
+   dadosFabricantes.forEach(function(fabricante) {
+    const option = document.createElement("option");
+    option.value = fabricante.id;
+    option.textContent = fabricante.nome + " (" + fabricante.paisOrigem + ")";
+    document.getElementById("fabricante-modelo").appendChild(option);
+   });
+
+   MODAL.style.display = "block";
+   setShowHide(false, ".modal-content-modelo");
   });
+
 
 //    // Código professor:
 //    // Evento de clique no botão Modelos
