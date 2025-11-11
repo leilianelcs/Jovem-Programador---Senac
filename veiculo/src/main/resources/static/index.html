@@ -1,128 +1,151 @@
 <html>
-<head>    
-    <meta charset="UTF-8">
-    <title>Pagina de automoveis</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="eventoClick.js"></script>
-    <script src="comum.js"></script>
-    <script src="gerenciarElementos.js?r=5"></script>
-    <script src="modelos.js?r=5"></script>
-    <script src="veiculos.js?r=6"></script>
-    <script src="fabricantes.js?r=7"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pagina de automoveis</title>
+        <link rel="stylesheet" href="styles.css">
+        <script defer src="eventoClick.js"></script>
+        <script src="comum.js"></script>
+        <script src="gerenciarElementos.js?r=5"></script>
+        <script src="modelos.js?r=5"></script>
+        <script src="veiculos.js?r=6"></script>
+        <script defer  src="fabricantes.js?r=7"></script>
+    </head>
 
-</head>
-
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <a href="/" class="logo" aria-label="Pagina inicial">
-                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-                    <rect x="4" y="18" width="40" height="14" rx="7" fill="#0d47a1"/>
-                    <circle cx="16" cy="34" r="4" fill="#263238"/>
-                    <circle cx="32" cy="34" r="4" fill="#263238"/>
-                    <rect x="14" y="14" width="20" height="6" rx="3" fill="#42a5f5"/>
-                    <rect x="20" y="8" width="8" height="7" rx="2" fill="#0d47a1"/>
-                </svg>
-                <span class="brand-text">MultiCar</span>
-            </a>
-        </div>
-        
-        <nav class="main-nav" aria-label="Menu principal">
-            <ul>
-                <li><a href="#fabricantes" id="bt-fabricantes">Fabricantes</a></li>
-                <li><a href="#modelos" id="bt-modelos">Modelos</a></li>
-                <li><a href="#veiculos" id="bt-veiculos">Veículos</a></li>
-            </ul>
-        </nav>
-        <div class="actions">
-            <button class="btn primary">Login</button>
-            <button class="btn outline">Registrar</button>
-        </div>
-    </header>
-    <main>
-        <div id="modal">
-            <!-- Botão fechar Modal  -->
-            <span id="close-modal" class="close-button">&times;</span> 
-            
-            <!-- Modal Fabricantes -->
-            <div id="modal-content-fabricante" class="modal-content modal-content-fabricante">                              
-                <div id="modal-title">Cadastro de Fabricante</div>           
-                <form id="form-fabricante">
-                 <label for="nome-fabricante">Nome Fabricante:</label>
-                 <input type="text" id="nome-fabricante" name="nome-fabricante" required>
-                     <br>
-                     <label for="pais-fabricante">País de origem:</label>
-                      <select id="pais-fabricante" name="pais-fabricante" required>
-                        <option value="">Selecione um país</option>
-                        <option value="Brasil">Brasil</option>
-                        <option value="Alemanha">Alemanha</option>
-                        <option value="Japão">Japão</option>
-                        <option value="EUA">EUA</option>
-                        <option value="Itália">Itália</option>
-                     </select>                
-                     <button type="submit" class="botao-enviar">Enviar</button>
-                </form>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <a href="/" class="logo" aria-label="Pagina inicial">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-hidden="true">
+                        <rect x="4" y="18" width="40" height="14" rx="7"
+                            fill="#0d47a1" />
+                        <circle cx="16" cy="34" r="4" fill="#263238" />
+                        <circle cx="32" cy="34" r="4" fill="#263238" />
+                        <rect x="14" y="14" width="20" height="6" rx="3"
+                            fill="#42a5f5" />
+                        <rect x="20" y="8" width="8" height="7" rx="2"
+                            fill="#0d47a1" />
+                    </svg>
+                    <span class="brand-text">MultiCar</span>
+                </a>
             </div>
 
-            <!-- Modal cadatro de Modelos -->
-            <div id="modal-content-modelo" class="modal-content modal-content-modelo">                              
-                <div id="modal-title">Cadastro de Modelo</div>           
-                <form id="form-modelo">
-                <label for="nome-modelo">Nome do Modelo:</label>
-                <input type="text" id="nome-modelo" name="nome-modelo" required>
-                <br>
-                <label for="fabricante-modelo">Fabricante:</label>
-                    <select id="fabricante-modelo" name="fabricante-modelo" required>                 
-                    </select>               
-                    <button class="botao-enviar">Enviar</button>
-                </form>
+            <nav class="main-nav" aria-label="Menu principal">
+                <ul>
+                    <li><a href="#fabricantes"
+                            id="bt-fabricantes">Fabricantes</a></li>
+                    <li><a href="#modelos" id="bt-modelos">Modelos</a></li>
+                    <li><a href="#veiculos" id="bt-veiculos">Veículos</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <button class="btn primary">Login</button>
+                <button class="btn outline">Registrar</button>
             </div>
-            <!-- Modal cadatro de Veículos -->
-         <div id="modal-content-veiculo" class="modal-content modal-content-veiculo">                              
-            <div id="modal-title">Cadastro de Veículo</div>
-            <form id="form-veiculo">
-                <label for="fabricante-veiculo">Fabricante do Veículo:</label>
-                <select id="fabricante-veiculo" name="fabricante-veiculo" required>                 
-                </select>
-                <label for="modelo-veiculo">Modelo do Veículo:</label>
-                <select id="modelo-veiculo" name="modelo-veiculo" required>                 
-                </select>
-                <br />
-                <label for="placa-veiculo">Placa do Veículo:</label>
-                <input type="text" id="placa-veiculo" name="placa-veiculo" required>                
-                <label for="cor-veiculo">Cor do Veículo:</label>
-                <input type="text" id="cor-veiculo" name="cor-veiculo" required>
-                <label for="ano-veiculo">Ano do Veículo</label>
-                <input type="number" id="ano-veiculo" name="ano-veiculo" required />
-                <label for="preco-veiculo">Preço do Veículo</label>
-                <input type="number" id="preco-veiculo" name="preco-veiculo" required />
+        </header>
+        <main>
+            <div id="modal">
+                <!-- Botão fechar Modal  -->
+                <span id="close-modal" class="close-button">&times;</span>
 
-                <button class="botao-enviar">Enviar</button>
+                <!-- Modal Fabricantes -->
+                <div id="modal-content-fabricante"
+                    class="modal-content modal-content-fabricante">
+                    <div id="modal-title">Cadastro de Fabricante</div>
+                    <form id="form-fabricante">
+                        <label for="nome-fabricante">Nome Fabricante:</label>
+                        <input type="text" id="nome-fabricante"
+                            name="nome-fabricante" required>
+                        <br>
+                        <label for="pais-fabricante">País de origem:</label>
+                        <select id="pais-fabricante" name="pais-fabricante"
+                            required>
+                            <option value>Selecione um país</option>
+                            <!-- <option value="Brasil">Brasil</option>
+                            <option value="Alemanha">Alemanha</option>
+                            <option value="Japão">Japão</option>
+                            <option value="EUA">EUA</option>
+                            <option value="Itália">Itália</option> -->
+                        </select>
+                        <button id="salvar-fabricante" class="botao-enviar">Enviar</button>
+                    </form>
+                </div>
 
-            </form>
-        </div>
-        </div>
+                <!-- Modal cadastro de Modelos -->
+                <div id="modal-content-modelo"
+                    class="modal-content modal-content-modelo">
+                    <div id="modal-title">Cadastro de Modelo</div>
+                    <form id="form-modelo">
+                        <label for="nome-modelo">Nome do Modelo:</label>
+                        <input type="text" id="nome-modelo" name="nome-modelo"
+                            required>
+                        <br>
+                        <label for="fabricante-modelo">Fabricante:</label>
+                        <select id="fabricante-modelo" name="fabricante-modelo"
+                            required>
+                        </select>
+                        <button id="salvar-modelo" class="botao-enviar">Enviar</button>
+                    </form>
+                </div>
 
-        <section id="fabricantes" class="minha-section">
-            <h2>Fabricantes</h2>
-            <p>Informações sobre fabricantes de automóveis</p>     
-            <span><button id="novo-fabricante" class="btn-novo">Novo Fabricante</button></span>  
-        </section>        
+                <!-- Modal cadatro de Veículos -->
+                <div id="modal-content-veiculo"
+                    class="modal-content modal-content-veiculo">
+                    <div id="modal-title">Cadastro de Veículo</div>
+                    <form id="form-veiculo">
+                        <label for="fabricante-veiculo">Fabricante do
+                            Veículo:</label>
+                        <select id="fabricante-veiculo"
+                            name="fabricante-veiculo" required>
+                        </select>
+                        <label for="modelo-veiculo">Modelo do Veículo:</label>
+                        <select id="modelo-veiculo" name="modelo-veiculo"
+                            required>
+                        </select>
+                        <br />
+                        <label for="placa-veiculo">Placa do Veículo:</label>
+                        <input type="text" id="placa-veiculo"
+                            name="placa-veiculo" required>
+                        <label for="cor-veiculo">Cor do Veículo:</label>
+                        <input type="text" id="cor-veiculo" name="cor-veiculo"
+                            required>
+                        <label for="ano-veiculo">Ano do Veículo</label>
+                        <input type="number" id="ano-veiculo" name="ano-veiculo"
+                            required />
+                        <label for="preco-veiculo">Preço do Veículo</label>
+                        <input type="number" id="preco-veiculo"
+                            name="preco-veiculo" required />
 
-        <section id="modelos" class="minha-section">
-             <h2>Modelos</h2>
-            <p>Informações sobre modelos disponíveis</p>  
-            <span><button id="novo-modelo" class="btn-novo">Novo Modelo</button></span>
-        </section>         
+                        <button class="botao-enviar">Enviar</button>
 
-        <section id="veiculos" class="minha-section">
-            <h2>Veículos</h2>
-           <p>Informações sobre Veículos disponíveis</p>  
-           <span><button id="novo-veiculo" class="btn-novo">Novo Veículo</button></span>
-       </section>
+                    </form>
+                </div>
+            </div>
 
-    </main>
+            <section id="fabricantes" class="minha-section">
+                <h2>Fabricantes</h2>
+                <p>Informações sobre fabricantes de automóveis</p>
+                <span><button id="novo-fabricante" class="btn-novo">Novo
+                        Fabricante</button></span>
+            </section>
 
-</body>
+            <section id="modelos" class="minha-section">
+                <h2>Modelos</h2>
+                <p>Informações sobre modelos disponíveis</p>
+                <span><button id="novo-modelo" class="btn-novo">Novo
+                        Modelo</button></span>
+            </section>
+
+            <section id="veiculos" class="minha-section">
+                <h2>Veículos</h2>
+                <p>Informações sobre Veículos disponíveis</p>
+                <span><button id="novo-veiculo" class="btn-novo">Novo
+                        Veículo</button></span>
+            </section>
+
+        </main>
+
+    </body>
 
 </html>
