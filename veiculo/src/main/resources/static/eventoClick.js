@@ -1,163 +1,85 @@
 const MODAL = document.getElementById("modal");
 const CLOSE_MODAL_BUTTON = document.getElementById("close-modal");
 
-// Evento de clique no botão Fabricantes
-document
-  .getElementById("bt-fabricantes")
-  .addEventListener("click", async function (event) {
-    setShowHide(true, ".minha-section");
-    const secaoFabricantes = document.querySelector("#fabricantes");
-    secaoFabricantes.style.display = "block";
+// 👉 Evento de clique no botão "Fabricantes"
+document.getElementById("bt-fabricantes").addEventListener("click", async () => {
+  setShowHide(true, ".minha-section");
 
-    // Limpa o conteúdo anterior da seção (exceto o título e parágrafo)
-    secaoFabricantes.querySelectorAll("table").forEach(function (tabela) {
-      tabela.remove();
-    });
+  const secaoFabricantes = document.querySelector("#fabricantes");
+  secaoFabricantes.style.display = "block";
 
-    const dadosFabricantes = await getData(
-      "http://localhost:8080/api/fabricantes"
-    );
+  // Limpa tabelas antigas
+  secaoFabricantes.querySelectorAll("table").forEach(tabela => tabela.remove());
 
-    if (dadosFabricantes.ok === false) {
-      document.querySelector("#fabricantes").innerHTML =
-        "<p>Erro ao carregar dados dos fabricantes.</p>";
-      document.querySelector("#fabricantes").style.color = "red";
-      return;
-    }
+  const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes");
 
-    secaoFabricantes.appendChild(criarTabelaFabricante(dadosFabricantes));
-  });
+  if (!dadosFabricantes || dadosFabricantes.ok === false) {
+    secaoFabricantes.innerHTML += `<p style="color:red;">Erro ao carregar dados dos fabricantes.</p>`;
+    return;
+  }
 
-CLOSE_MODAL_BUTTON.addEventListener("click", function (event) {
+  secaoFabricantes.appendChild(criarTabelaFabricante(dadosFabricantes));
+});
+
+// 👉 Fecha o modal ao clicar no botão de fechar
+CLOSE_MODAL_BUTTON.addEventListener("click", () => {
   MODAL.style.display = "none";
 });
 
-// Evento de click no botão Novo Fabricante
-document
-  .getElementById("novo-fabricante").addEventListener("click", async function (event) {
-    setShowHide(true, ".modal-content");
+// 👉 Evento de clique no botão "Novo Fabricante"
+document.getElementById("novo-fabricante").addEventListener("click", async () => {
+  setShowHide(true, ".modal-content");
 
-    // //carregar json com nomes de países do arquivo externo json
-    // const dadosPaises = await getData("http://localhost:8080/paises.json");
-    // const selectPais = document.getElementById("pais-origem");
-    // setRemoverElementos("#pais-fabricante-option");
-    // dadosPaises.forEach(function(pais){
-    //     const option = document.createElement("option");
-    //     option.value = pais.nome_pais;
-    //     option.textContent = pais.nome_pais;
-    //     selectPais.appendChild(option);
-    // })
+  // Carrega países do JSON
+  const dadosPaises = await getData("http://localhost:8080/paises.json");
+  const selectPais = document.getElementById("pais-fabricante");
 
-    
-    const dadosPaises = await getData("http://localhost:8080/paises.json");
-    const selectPais = document.getElementById("pais-fabricante");
-    setRemoverElementos("#pais-fabricante option");
-    dadosPaises.forEach(function(pais) {
-      const option = document.createElement("option");
-      option.value = pais.nome_pais;
-      option.textContent = pais.nome_pais;
-      selectPais.appendChild(option);
-    });
+  // Remove opções antigas
+  setRemoverElementos("#pais-fabricante option");
 
-    MODAL.style.display = "block";
-    setShowHide(false, ".modal-content-fabricante");
+  // Adiciona nova lista de países
+  dadosPaises.forEach(pais => {
+    const option = document.createElement("option");
+    option.value = pais.nome_pais;
+    option.textContent = pais.nome_pais;
+    selectPais.appendChild(option);
   });
 
-// // Evento de clique no botão Enviar - Novo Fabricante
-// document
-//   .getElementById("form-fabricante")
-//   .addEventListener("submit", async function (event) {
-//     event.preventDefault();
+  MODAL.style.display = "block";
+  setShowHide(false, ".modal-content-fabricante");
+});
 
-//     const nome = document.getElementById("nome-fabricante").value.trim();
-//     const paisOrigem = document.getElementById("pais-fabricante").value;
+// 👉 Evento de clique no botão "Salvar Fabricante"
+document.getElementById("salvar-fabricante").addEventListener("click", async (event) => {
+  event.preventDefault();
 
-//     if (!nome || !paisOrigem) {
-//       alert("Preencha todos os campos.");
-//       return;
-//     }
+  const nome = document.getElementById("nome-fabricante").value.trim();
+  const paisOrigem = document.getElementById("pais-fabricante").value;
 
-//     const novoFabricante = { nome, paisOrigem };
+  if (!nome || !paisOrigem) {
+    alert("Preencha todos os campos.");
+    return;
+  }
 
-//     try {
-//       const resposta = await fetch("http://localhost:8080/api/fabricantes", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(novoFabricante),
-//       });
+  const novoFabricante = { nome, paisOrigem };
+  const resultado = await postData("http://localhost:8080/api/fabricantes", novoFabricante);
 
-//       if (resposta.ok) {
-//         const fabricanteCriado = await resposta.json();
-//         alert("Fabricante adicionado com sucesso!");
+  if (resultado.error) {
+    alert(`Erro ao adicionar fabricante: ${resultado.message || "Erro desconhecido."}`);
+    return;
+  }
 
-//         // Fecha o modal
-//         MODAL.style.display = "none";
-//         document.getElementById("form-fabricante").reset();
+  // Fecha o modal e limpa o formulário
+  MODAL.style.display = "none";
+  document.getElementById("form-fabricante").reset();
 
-//         // Atualiza a tabela de fabricantes
-//         const secaoFabricantes = document.querySelector("#fabricantes");
-//         secaoFabricantes.querySelectorAll("table").forEach(function (tabela) {
-//           tabela.remove();
-//         });
+  // Atualiza a tabela de fabricantes
+  const secaoFabricantes = document.querySelector("#fabricantes");
+  secaoFabricantes.querySelectorAll("table").forEach(tabela => tabela.remove());
 
-//         const dadosAtualizados = await getData(
-//           "http://localhost:8080/api/fabricantes"
-//         );
-//         secaoFabricantes.appendChild(criarTabelaFabricante(dadosAtualizados));
-//       } else {
-//         const erro = await resposta.json();
-//         alert(`Erro ao adicionar: ${erro.message || resposta.statusText}`);
-//       }
-//     } catch (erro) {
-//       alert(`Erro de conexão: ${erro.message}`);
-//     }
-//   });
-
-//Evento de clique botão Enviar - Novo Fabricante
-document
-  .getElementById("salvar-fabricante")
-  .addEventListener("click", async function (event) {
-    event.preventDefault();
-
-    const nome = document.getElementById("nome-fabricante").value.trim();
-    const paisOrigem = document.getElementById("pais-fabricante").value;
-
-    if (!nome || !paisOrigem) {
-      alert("Preencha todos os campos.");
-      return;
-    }
-
-    const novoFabricante = { nome, paisOrigem };
-    const resultado = await postData("http://localhost:8080/api/fabricantes", novoFabricante);
-
-    if (resultado.error) {
-      alert(
-        `Erro ao adicionar fabricante: ${
-          resultado.message || "Erro desconhecido."
-        }`
-      );
-      return;
-    }
-    alert("Fabricante adicionado com sucesso!");
-
-    // Fecha o modal e limpa o formulário
-    MODAL.style.display = "none";
-    document.getElementById("form-fabricante").reset();
-
-    // Atualiza a tabela de fabricantes
-    const secaoFabricantes = document.querySelector("#fabricantes");
-    secaoFabricantes.querySelectorAll("table").forEach(function (tabela) {
-      tabela.remove();
-    });
-
-    const dadosAtualizados = await getData(
-      "http://localhost:8080/api/fabricantes"
-    );
-    secaoFabricantes.appendChild(criarTabelaFabricante(dadosAtualizados));
-  });
-
+  const dadosAtualizados = await getData("http://localhost:8080/api/fabricantes");
+  secaoFabricantes.appendChild(criarTabelaFabricante(dadosAtualizados));
+});
 
 // Evento de clique no botão Modelos
 document
@@ -218,47 +140,42 @@ document
   });
 
   //Evento de clique botão Enviar - Novo Modelo
-document
-.getElementById("salvar-modelo")
-.addEventListener("click", async function (event) {
-  event.preventDefault();
-
-  const nome = document.getElementById("nome-modelo").value.trim();
-  const nomeFabricante = document.getElementById("fabricante-modelo").value;
-
-  if (!nome || !nomeFabricante) {
-    alert("Preencha todos os campos.");
-    return;
-  }
-
-  const novoModelo = { nome, nomeFabricante };
-  const resultado = await postData("http://localhost:8080/api/fabricantes", novoModelo);
-
-  if (resultado.error) {
-    alert(
-      `Erro ao adicionar fabricante: ${
-        resultado.message || "Erro desconhecido."
-      }`
-    );
-    return;
-  }
-  alert("Modelo adicionado com sucesso!");
-
-  // Fecha o modal e limpa o formulário
-  MODAL.style.display = "none";
-  document.getElementById("form-modelo").reset();
-
-  // Atualiza a tabela de fabricantes
-  const secaoModelos = document.querySelector("#modelos");
-  secaoModelos.querySelectorAll("table").forEach(function (tabela) {
-    tabela.remove();
+  document.getElementById("salvar-modelo").addEventListener("click", async function (event) {
+    event.preventDefault();
+  
+    const nome = document.getElementById("nome-modelo").value.trim();
+    const fabricanteId = document.getElementById("fabricante-modelo").value;
+  
+    if (!nome || !fabricanteId) {
+      alert("Preencha todos os campos.");
+      return;
+    }
+  
+    const novoModelo = {
+      nome,
+      fabricanteId: parseInt(fabricanteId) // garante que seja número
+    };
+  
+    const resultado = await postData("http://localhost:8080/api/modelos", novoModelo);
+  
+    if (resultado.error) {
+      alert(`Erro ao adicionar modelo: ${resultado.message || "Erro desconhecido."}`);
+      return;
+    }
+  
+    alert("Modelo adicionado com sucesso!");
+  
+    // Fecha o modal e limpa o formulário
+    MODAL.style.display = "none";
+    document.getElementById("form-modelo").reset();
+  
+    // Atualiza a tabela de modelos
+    const secaoModelos = document.querySelector("#modelos");
+    secaoModelos.querySelectorAll("table").forEach(tabela => tabela.remove());
+  
+    const dadosAtualizados = await getData("http://localhost:8080/api/modelos");
+    secaoModelos.appendChild(criarTabelaModelo(dadosAtualizados));
   });
-
-  const dadosAtualizados = await getData(
-    "http://localhost:8080/api/modelos"
-  );
-  secaoModelos.appendChild(criarTabelaModelos(dadosAtualizados));
-});
 
 //    // Código professor:
 //    // Evento de clique no botão Modelos

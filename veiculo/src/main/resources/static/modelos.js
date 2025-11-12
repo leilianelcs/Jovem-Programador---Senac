@@ -81,20 +81,6 @@ const criarTabelaModelo = function (dados) {
       }
     });
 
-    //     try {
-    //         const resultado = await setDelete(`http://localhost:8080/api/modelos/${item.id}`);
-
-    //         if (isSuccess(resultado)) {
-    //             this.parentElement.remove();
-    //             alert(`Modelo com ID ${item.id} deletado com sucesso.`);
-    //         } else {
-
-    //         }
-    //     } catch (erro) {
-    //         alert(`Erro de conexão: ${erro.message}`);
-    //     }
-    // });
-
     tr.appendChild(deletar);
 
     tbody.appendChild(tr);
