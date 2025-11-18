@@ -117,7 +117,7 @@ document
     );
     if (dadosFabricantes.status === 404 || dadosFabricantes.error) {
       alert(
-        "Erro ao caregar dados dos fabricantes. Erro: " +
+        "Erro ao carregar dados dos fabricantes. Erro: " +
           dadosFabricantes.message
       );
       return;
@@ -153,8 +153,11 @@ document
   
     const novoModelo = {
       nome,
-      fabricanteId: parseInt(fabricanteId) // garante que seja número
+      fabricante: { id: parseInt(fabricanteId) }
     };
+  
+    // 👇 Aqui está o console.log para inspecionar o que será enviado
+    console.log("Modelo a ser enviado:", novoModelo);
   
     const resultado = await postData("http://localhost:8080/api/modelos", novoModelo);
   
@@ -165,27 +168,15 @@ document
   
     alert("Modelo adicionado com sucesso!");
   
-    // Fecha o modal e limpa o formulário
     MODAL.style.display = "none";
     document.getElementById("form-modelo").reset();
   
-    // Atualiza a tabela de modelos
     const secaoModelos = document.querySelector("#modelos");
     secaoModelos.querySelectorAll("table").forEach(tabela => tabela.remove());
   
     const dadosAtualizados = await getData("http://localhost:8080/api/modelos");
     secaoModelos.appendChild(criarTabelaModelo(dadosAtualizados));
   });
-
-//    // Código professor:
-//    // Evento de clique no botão Modelos
-//   document.getElementById("bt-modelos").addEventListener("click", async function(event) {
-//     setShowHide(true, ".minha-section");
-//     setRemoverElementos(".tabela-dados");
-//     document.querySelector("#modelos").style.display = "block";
-//     const dadosModelo = await getData("http://localhost:8080/api/modelos");
-//     document.querySelector("#modelos").appendChild(criarTabelaModelo(dadosModelo));
-// });
 
 // Evento de clique no botão veículos
 document
@@ -218,3 +209,7 @@ document
   .addEventListener("click", function (event) {
     alert("Função add veículo não implementada");
   });
+
+const validarVeiculo = function(veiculo) {
+  const anoAtual = new Date()
+}

@@ -20,7 +20,7 @@ const criarTabelaVeiculo = function(dados) {
         th.textContent = campo;
         trCabecalho.appendChild(th);
     });
-    thead.appendChild(trCabecalho);
+     thead.appendChild(trCabecalho);
 
     // Estilização da tabela
     tabela.classList.add("tabela-dados");
@@ -37,22 +37,24 @@ const criarTabelaVeiculo = function(dados) {
 
         // Placa
         const tdPlaca = document.createElement("td");
-        tdPlaca.textContent = item.placa;
+        tdPlaca.textContent = item.placa || "-";
         tr.appendChild(tdPlaca);
 
        // Cor
         const tdCor = document.createElement("td");
-        tdCor.textContent = item.cor;
+        tdCor.textContent = item.cor || "-";
         tr.appendChild(tdCor);
 
        // Valor
        const tdValor = document.createElement("td");
-        tdValor.textContent = item.valor;
+        tdValor.textContent = item.valor || "-";
         tr.appendChild(tdValor);
+
+       
 
        // Ano
        const tdAno = document.createElement("td");
-       tdAno.textContent = item.ano;
+       tdAno.textContent = item.ano || "-";
        tr.appendChild(tdAno);
 
        // Descrição
@@ -80,10 +82,10 @@ const criarTabelaVeiculo = function(dados) {
         tdPaisOrigem.textContent = item.modelo.fabricante.paisOrigem;
         tr.appendChild(tdPaisOrigem);
 
-        // Ícones
-        const deletar = document.createElement("td");
-        deletar.innerHTML = '<button class="btn delete">Deletar</button>';
-        deletar.addEventListener("click", async function () {
+        // Ícones - Botão Deletar
+        const tdDeletar = document.createElement("td");
+        tdDeletar.innerHTML = '<button class="btn delete">Deletar</button>';
+        tdDeletar.addEventListener("click", async function () {
             const confirmacao = confirm(`Tem certeza que deseja deletar o veículo com ID ${item.id}?`);
             if (!confirmacao) return;
         
@@ -107,7 +109,7 @@ const criarTabelaVeiculo = function(dados) {
             }
         });        
    
-       tr.appendChild(deletar);
+       tr.appendChild(tdDeletar);
 
 
         tbody.appendChild(tr);
@@ -116,3 +118,48 @@ const criarTabelaVeiculo = function(dados) {
     tabela.appendChild(tbody);
     return tabela;
 };
+
+//Aula 17/11
+
+// const carregarModelosVeiculo = async function(fabricanteId) {
+//     const selectFabricante = document.getElementById("modelo-veiculo");
+//     setRemoverElementos("#modelo-veiculo option");
+
+//     if (!fabricanteId) {
+//         const optionPadrao = document.createElement("option");
+//     }
+
+//     //busca e filtra os modelos
+//     const dadosModelos = await getData("http://localhost:8080/api/modelos");
+//     const modelosFiltrados = dadosModelos.filter(function(modelo){
+//         return modelo.fabricante.id == fabricanteId;
+//     });
+
+//     //se não existe modelos para o fabricante, congela o select
+//     if(modelosFiltrados.length === 0) {
+//         const optionSemModelo = document.createElement("option");
+//         optionSemModelo.value = "";
+//         optionSemModelo.textContent = "Nenhum Modelo Cadastrado";
+//         optionSemModelo.selected = ("fabricante");
+//     };
+
+//     //adiciona modelos filtrados
+//     modelosFiltrados.forEach(function(modelo));
+
+//     //Busca e filtra os modelos
+//     const dadosModelos = await getData("http://localhost:8080/api/modelos");
+
+// };
+
+// const carregarFabricantesVeiculo = async function() {
+
+//     // inicializa o select de modelo congelado
+//     const optionModeloParado = document.getElementById("fabricante-veiculo");
+//     const selectModelo = {}
+// };
+
+// const atualizarTabelaVeiculos 
+
+// const validarPlaca = function(placa) {
+//     placa = placa.trim().toUpperCase().replace(/-/g, '');
+// }

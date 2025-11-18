@@ -41,13 +41,23 @@ const criarTabelaModelo = function (dados) {
 
     // Fabricante
     const tdFabricante = document.createElement("td");
-    tdFabricante.textContent = item.fabricante.nome;
+    tdFabricante.textContent = item.fabricante.nome || "-";
     tr.appendChild(tdFabricante);
-
+    
     // País de origem
     const tdPaisOrigem = document.createElement("td");
-    tdPaisOrigem.textContent = item.fabricante.paisOrigem;
+    tdPaisOrigem.textContent = item.fabricante.paisOrigem || "-";
     tr.appendChild(tdPaisOrigem);
+
+    // // Fabricante
+    // const tdFabricante = document.createElement("td");
+    // tdFabricante.textContent = item.fabricante.nome;
+    // tr.appendChild(tdFabricante);
+    
+    // // País de origem
+    // const tdPaisOrigem = document.createElement("td");
+    // tdPaisOrigem.textContent = item.fabricante.paisOrigem;
+    // tr.appendChild(tdPaisOrigem);
 
     // Ícones
     const deletar = document.createElement("td");

@@ -60,6 +60,7 @@ async function setDelete(url) {
   } catch (error) {}
 }
 
+
 // verifica se a resposta é sucesso
 function isSuccess(response) {
   return response && !response.error;
@@ -74,3 +75,7 @@ function isSuccess(response) {
 //   }
 
 //}
+
+const formatarPreco = function(valor) {
+
+};
