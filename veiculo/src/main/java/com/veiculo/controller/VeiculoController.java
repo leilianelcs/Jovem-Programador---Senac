@@ -28,6 +28,11 @@ public class VeiculoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/existe/{placa}")
+    public boolean existePorPlaca(@PathVariable String placa) {
+        return service.existePorPlaca(placa);
+    }
+
     @GetMapping("/placa/{placa}")
     public ResponseEntity<VeiculoDTO> buscarPorPlaca(@PathVariable String placa) {
         VeiculoDTO veiculo = service.buscarPorPlaca(placa);

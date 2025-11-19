@@ -2,6 +2,7 @@ package com.veiculo.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,10 +30,24 @@ public class VeiculoService {
     }
 
     @Transactional(readOnly = true)
+    public boolean existePorPlaca(String placa) {
+        return repository.existsByPlaca(placa);
+    }
+
+    @Transactional(readOnly = true)
     public VeiculoDTO buscarPorPlaca(String placa) {
         return repository.findByPlaca(placa)
                 .map(VeiculoMapper::toDTO)
                 .orElseThrow(() -> new RuntimeException("Veículo não encontrado com a placa: " + placa));
+    }
+
+    @Transactional(readOnly = true)
+    public List<VeiculoDTO> buscarPorPlacaParcial(String termo) {
+        if (termo == null || termo.isBlank()) {
+            throw new IllegalArgumentException(
+                    messageSource.getMessage("veiculo.placa.obrigatoria", null, LocaleContextHolder.getLocale()));
+        }
+        return VeiculoMapper.toDTOList(repository.findByPlacaContainingIgnoreCase(termo.trim()));
     }
 
     @Transactional

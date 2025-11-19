@@ -76,6 +76,3 @@ function isSuccess(response) {
 
 //}
 
-const formatarPreco = function(valor) {
-
-};

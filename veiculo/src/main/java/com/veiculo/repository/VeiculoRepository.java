@@ -1,5 +1,6 @@
 package com.veiculo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
                                          // com unique, por exemplo, que não pode cadastrar igual)
 
     Optional<Veiculo> findByPlaca(String placa);
+
+    List<Veiculo> findByPlacaContainingIgnoreCase(String placa);
 
 }
