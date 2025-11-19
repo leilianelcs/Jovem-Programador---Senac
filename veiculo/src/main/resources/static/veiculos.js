@@ -295,9 +295,4 @@ const validarVeiculo = function(veiculo) {
 
     if (!veiculo.ano || veiculo.ano < 1900 ||  veiculo.ano > anoAtual + 1) {
         return {valido: false, mensagem: `O ano deve estar entre 1900 e ${anoAtual + 1}.`};
-
-        
-
 }
-
-
