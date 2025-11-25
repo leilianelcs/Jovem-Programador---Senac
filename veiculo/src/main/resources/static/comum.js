@@ -44,6 +44,38 @@ async function postData(url, data) {
   }
 }
 
+async function putData(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("aplication/json")) {
+        return await response.json();
+      } else {
+        return await response.text();
+      }
+    } else {
+      try {
+        const error = await response.json();
+        return { error: true, status: response.status, ...error };
+      } catch {
+        return {
+          error: true,
+          status: response.status,
+          message: response.statusText,
+        };
+      }
+    }
+  } catch (error) {
+    return { error: true, message: "Erro de conexão: " + error.message };
+  }
+}
+
 async function setDelete(url) {
   try {
     const response = await fetch(url, { method: "DELETE" });

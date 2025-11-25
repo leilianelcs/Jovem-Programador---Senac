@@ -1,3 +1,4 @@
+
 // Função reutilizável para criar uma linha da tabela
 function criarLinhaFabricante(item) {
   const tr = document.createElement("tr");
@@ -15,8 +16,58 @@ function criarLinhaFabricante(item) {
   tr.appendChild(tdPais);
 
   const tdAcao = document.createElement("td");
-  tdAcao.innerHTML = '<button class="btn delete">Deletar</button>';
-  tdAcao.querySelector("button").addEventListener("click", async function () {
+
+  // Botão Editar
+  const btnEditar = document.createElement("button");
+  btnEditar.classList.add("btn", "edit");
+  btnEditar.textContent = "Editar";
+  btnEditar.addEventListener("click", function () {
+    // Abrir modal com dados preenchidos
+    document.getElementById("nome-fabricante").value = item.nome;
+    document.getElementById("pais-fabricante").value = item.paisOrigem;
+    document.getElementById("modal").style.display = "block";
+
+    // Alterar comportamento do botão salvar para atualizar
+    const botaoSalvar = document.getElementById("salvar-fabricante");
+    botaoSalvar.textContent = "Atualizar";
+    botaoSalvar.onclick = async function (event) {
+      event.preventDefault();
+      const nome = document.getElementById("nome-fabricante").value.trim();
+      const paisOrigem = document.getElementById("pais-fabricante").value;
+
+      if (!nome || !paisOrigem) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+      try {
+        const resposta = await fetch(`http://localhost:8080/api/fabricantes/${item.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, paisOrigem })
+        });
+
+        if (resposta.ok) {
+          const atualizado = await resposta.json();
+          tdNome.textContent = atualizado.nome;
+          tdPais.textContent = atualizado.paisOrigem;
+          alert("Fabricante atualizado com sucesso!");
+          document.getElementById("modal").style.display = "none";
+          botaoSalvar.textContent = "Salvar";
+        } else {
+          const erro = await resposta.json();
+          alert(`Erro ao atualizar: ${erro.message || resposta.statusText}`);
+        }
+      } catch (erro) {
+        alert(`Erro de conexão: ${erro.message}`);
+      }
+    };
+  });
+
+  // Botão Deletar
+  const btnDeletar = document.createElement("button");
+  btnDeletar.classList.add("btn", "delete");
+  btnDeletar.textContent = "Deletar";
+  btnDeletar.addEventListener("click", async function () {
     const confirmacao = confirm(`Tem certeza que deseja excluir o fabricante com ID ${item.id}?`);
     if (!confirmacao) return;
 
@@ -38,7 +89,12 @@ function criarLinhaFabricante(item) {
     }
   });
 
+  // Adiciona os botões lado a lado
+  tdAcao.appendChild(btnEditar);
+  tdAcao.appendChild(btnDeletar);
+
   tr.appendChild(tdAcao);
+
   return tr;
 }
 
